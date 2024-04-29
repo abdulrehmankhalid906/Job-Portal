@@ -16,7 +16,7 @@
                 </a>
             </li>
 
-            <li class="sidebar-header">
+            {{-- <li class="sidebar-header">
                 Module Enhancer
             </li>
 
@@ -36,7 +36,7 @@
                 <a class="sidebar-link" href="{{ route('cities.index') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">The City</span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="sidebar-header">
                 Company Modules
@@ -72,10 +72,22 @@
             </li>
 
             <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('roles.index') }}">
+                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Roles</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('permissions.index') }}">
+                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Permissions</span>
+                </a>
+            </li>
+
+            {{-- <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('companies.index') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">Companies</span>
                 </a>
-            </li>
+            </li> --}}
 
             {{-- <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('cities.index') }}">
@@ -84,7 +96,7 @@
                 </a>
             </li> --}}
 
-            <li class="sidebar-header">
+            {{-- <li class="sidebar-header">
                 Plugins & Addons
             </li>
 
@@ -92,7 +104,7 @@
                 <a class="sidebar-link" href="{{ route('testimonials.index') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">Testimonial</span>
                 </a>
-            </li>
+            </li> --}}
 
         </ul>
     </div>

@@ -31,7 +31,7 @@ class DashboardController extends Controller
     public function companyProfile()
     {
         $user = Auth::user();
-        $users = User::with('company')->where('id',$user->id)->first();
+        $users = User::with('company')->where('id', $user->id)->first();
 
         // dd($users);
         $categories = [];
@@ -71,24 +71,6 @@ class DashboardController extends Controller
 
     public function newPost(JobRequest $request)
     {
-        // dd($request->all());
-
-        // Job::create([$request->validated()]);
-
-        // $job = new Job();
-        // $job->user_id = auth()->id();
-        // $job->company_id = auth()->user()->company->id;
-        // $job->title = $request->title;
-        // $job->description = $request->description;
-        // $job->category_id = $request->category_id;
-        // $job->country_id = $request->country_id;
-        // $job->city_id = $request->city_id;
-        // $job->position_level = $request->position_level;
-        // $job->job_type = $request->job_type;
-        // $job->salary_range = $request->salary_range;
-        // $job->valid_till = $request->valid_till;
-        // $job->save();
-
         $validatedData = $request->validated();
 
         $data = $validatedData + [
@@ -136,7 +118,7 @@ class DashboardController extends Controller
     public function writeFeedback()
     {
         $users = Auth::user();
-        $user = User::where('id',$users->id)->with(['company','testimonials'])->first();
+        $user = User::where('id', $users->id)->with(['company','testimonials'])->first();
 
         return view('company.feedback',[
             'user' => $user

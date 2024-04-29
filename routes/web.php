@@ -5,13 +5,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\TestApiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\Combine\CityController;
 use App\Http\Controllers\Combine\CountryController;
 use App\Http\Controllers\Combine\CategoryController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,8 @@ Route::resource('/cities', CityController::class);
 Route::resource('/testimonials', TestimonialController::class);
 Route::resource('/companies',CompanyController::class);
 
+Route::resource('/permissions', PermissionController::class);
+Route::resource('/roles', RoleController::class);
 
 
 
