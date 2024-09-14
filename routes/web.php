@@ -47,21 +47,21 @@ Route::get('/job-listing', [DashboardController::class, 'listing'])->name('listi
 Route::get('/applicants', [DashboardController::class, 'applicants'])->name('applicants')->middleware('auth');
 
 // Route::get('/retrive-users',[TestApiController::class,'RetriveUserDate']); we can use api even in web.php
-
+Route::get('/assign-permission/{id}', [RoleController::class, 'assignpermission'])->name('role.assignpermission');
 
 
 //feedback Section
 Route::get('/feedback',[DashboardController::class,'writeFeedback'])->name('feedback')->middleware('auth');
 Route::post('/feedback',[DashboardController::class,'storeFeedback'])->name('save-feedback')->middleware('auth');
 //Some resource
-Route::resource('/category', CategoryController::class);
-Route::resource('/countries', CountryController::class);
-Route::resource('/cities', CityController::class);
-Route::resource('/testimonials', TestimonialController::class);
-Route::resource('/companies',CompanyController::class);
 
-Route::resource('/permissions', PermissionController::class);
-Route::resource('/roles', RoleController::class);
-Route::resource('/users', UserController::class);
-
-
+Route::resources([
+    'users' => UserController::class,
+    'roles' => RoleController::class,
+    'permissions' => PermissionController::class,
+    'category' => CategoryController::class,
+    'countries' => CountryController::class,
+    'cities' => CityController::class,
+    'companies' => CompanyController::class,
+    'testimonials' => TestimonialController::class,
+]);

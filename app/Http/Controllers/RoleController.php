@@ -91,4 +91,9 @@ class RoleController extends Controller
 
         return redirect('roles')->with('success','Role Deleted Successfully!');
     }
+
+    public function assignpermission($id)
+    {
+        return $id;   
+    }
 }

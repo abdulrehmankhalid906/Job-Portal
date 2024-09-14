@@ -36,6 +36,8 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
+                                <a href="{{ route('role.assignpermission', $role->id) }}" class="btn btn-secondary">Assign</a>
+
                             </td>
                         </tr>
                         @endforeach
