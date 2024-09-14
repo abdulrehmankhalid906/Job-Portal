@@ -30,16 +30,15 @@ class DashboardController extends Controller
 
     public function companyProfile()
     {
-        $user = Auth::user();
-        $users = User::with('company')->where('id', $user->id)->first();
+        $users = User::with('company')->where('id', Auth::user()->id)->first();
 
         // dd($users);
         $categories = [];
-        $countries = [];
 
         return view('company.profile', [
             'categories' => $categories,
-            'countries' => $countries,
+            'countries' => Country::get(),
+            'cities' => City::get(),
             'users' => $users
         ]);
     }

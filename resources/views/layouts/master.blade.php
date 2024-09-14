@@ -36,6 +36,40 @@
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/fixedcolumns/4.2.1/js/dataTables.fixedColumns.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#country_id').change(function(){
+                var cunt_id = $('#country_id').val();
+                var options = '';
+        
+                $.ajax({
+                    url: "{{ route('cityData') }}",
+                    type: "GET",
+                    dataType: 'JSON',
+                    data:
+                        {
+                        country_id:cunt_id
+                    },
+                    cache: false,
+                    success: function(resp)
+                    {
+                        for(let index = 0; index < resp.length; index++)
+                        {
+                            options += `<option value="${resp[index].id}">${resp[index].name}</option>`;
+                        }
+        
+                        $('#city_id').html(options);
+        
+                    },
+        
+                    error: function()
+                    {
+        
+                    },
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>

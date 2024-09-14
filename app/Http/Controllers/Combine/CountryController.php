@@ -14,9 +14,10 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = Country::with('city')->get();
-        $cities = City::all();
-        return view('countries.countries',compact('countries','cities'));
+        $getcountries = Country::with('city')->get();
+        $countries = Country::all();
+
+        return view('countries.countries',compact('getcountries','countries'));
     }
 
     /**

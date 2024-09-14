@@ -16,13 +16,13 @@
                 </a>
             </li>
 
-            {{-- <li class="sidebar-header">
+            <li class="sidebar-header">
                 Module Enhancer
             </li>
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('category.index') }}">
-                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">The Catgory</span>
+                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">The Category</span>
                 </a>
             </li>
 
@@ -36,7 +36,7 @@
                 <a class="sidebar-link" href="{{ route('cities.index') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">The City</span>
                 </a>
-            </li> --}}
+            </li>
 
             <li class="sidebar-header">
                 Company Modules
@@ -83,11 +83,11 @@
                 </a>
             </li>
 
-            {{-- <li class="sidebar-item">
+            <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('companies.index') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">Companies</span>
                 </a>
-            </li> --}}
+            </li>
 
             {{-- <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('cities.index') }}">

@@ -3,16 +3,17 @@
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\Combine\CityController;
 use App\Http\Controllers\Combine\CountryController;
 use App\Http\Controllers\Combine\CategoryController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +52,6 @@ Route::get('/applicants', [DashboardController::class, 'applicants'])->name('app
 //feedback Section
 Route::get('/feedback',[DashboardController::class,'writeFeedback'])->name('feedback')->middleware('auth');
 Route::post('/feedback',[DashboardController::class,'storeFeedback'])->name('save-feedback')->middleware('auth');
-
 //Some resource
 Route::resource('/category', CategoryController::class);
 Route::resource('/countries', CountryController::class);

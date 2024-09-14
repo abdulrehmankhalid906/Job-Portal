@@ -85,13 +85,20 @@
 
                     <div class="row">
                         <div class="col-3 col-sm-3">
-                            <label for="">Country</label>
-                            <input type="text" class="form-control" name="password" id="password" value="">
+                            <label for="">Company Country</label>
+                            <select class="form-select form-control" id="country_id">
+                                <option value="">Select One</option>
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->id }}">{{ $country->name }} - {{ $country->shortcode }}</option>
+                                @endforeach
+                            </select>
                         </div>
-
+    
                         <div class="col-3 col-sm-3">
-                            <label for="">City</label>
-                            <input type="text" class="form-control" name="password" id="password" value="">
+                            <label for="">Company City</label>
+                            <select class="form-select form-control" id="city_id">
+                                <option value="">Select One</option>
+                            </select>
                         </div>
 
                         <div class="col-3 col-sm-3">

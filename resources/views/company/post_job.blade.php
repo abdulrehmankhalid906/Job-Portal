@@ -175,37 +175,3 @@
 @endsection
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-     $(document).ready(function(){
-            $('#country_id').change(function(){
-                var cunt_id = $('#country_id').val();
-                var options = '';
-
-                $.ajax({
-                    url: "{{ route('cityData') }}",
-                    type: "GET",
-                    dataType: 'JSON',
-                    data:
-                        {
-                        country_id:cunt_id
-                    },
-                    cache: false,
-                    success: function(resp)
-                    {
-                        for(let index = 0; index < resp.length; index++)
-                        {
-                            options += `<option value="${resp[index].id}">${resp[index].name}</option>`;
-                        }
-
-                        $('#city_id').html(options);
-
-                    },
-
-                    error: function()
-                    {
-
-                    },
-                });
-            });
-        });
-</script>
