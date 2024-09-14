@@ -12,10 +12,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        // $users = User::get();
-        // return view('users.user',[
-        //     'users' => $users,
-        // ]);
+        $users = User::get();
+        return view('users.user',[
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -50,7 +50,12 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findorFail($id);
+
+        // dd($user);
+        return view('users.view',[
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -58,7 +63,14 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findorFail($id);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+
+        return redirect()->route('users.index')->with('success', 'User is updated');
     }
 
     /**
@@ -67,10 +79,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         //simple user delete
-        //$user = User::findofFail($id);
+        //$user = User::findOrFail($id);
 
         // Delete everything associated with this user
-        // $user = User::with('posts')->findorFail($id);
+        // $user = User::with('posts')->findOrFail($id);
 
         // foreach($user->posts as $users)
         // {

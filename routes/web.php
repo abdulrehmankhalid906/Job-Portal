@@ -14,6 +14,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\Combine\CityController;
 use App\Http\Controllers\Combine\CountryController;
 use App\Http\Controllers\Combine\CategoryController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,6 @@ Route::resource('/companies',CompanyController::class);
 
 Route::resource('/permissions', PermissionController::class);
 Route::resource('/roles', RoleController::class);
-
+Route::resource('/users', UserController::class);
 
 

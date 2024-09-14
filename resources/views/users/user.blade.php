@@ -1,36 +1,51 @@
-@extends('frontend.master')
+@extends('layouts.master')
+
 @section('content')
-<section class="py-5">
-    <div class="container mb2">
-        <h1 class="text-center">All User</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
-                    <tr>
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>
-                            <a href="{{ route('user.show',$user->id)}}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
-                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <form action="{{ route('user.destroy', $user->id) }}" method="post" style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger btn-sm fa-solid fa-trash-can"></button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card-header align-items-center d-flex">
+            <h4 class="card-title mb-0 flex-grow-1">User</h4>
+            <div class="flex-shrink-0">
+                <a href="{{ route('users.create') }}" class="btn btn-success btn-label btn-sm">
+                    <i class="ri-add-fill label-icon align-middle fs-16 me-2"></i> Add New User
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <table id="landmarks-data-table" class="table table-bordered table-striped align-middle table-nowrap mb-0" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID(s)</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Created At</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td></td>
+                                <td>{{ $user->created_at }}</td>
+                                <td>
+                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-</section>
+</div>
 @endsection
+
