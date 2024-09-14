@@ -19,7 +19,7 @@
                     @method('PUT')
                     <div class="row">
                         <div class="col-lg-4">
-                            <label for="basiInput" class="form-label">Permission Name</label>
+                            <label for="basiInput" class="form-label">Role Name</label>
                             <input type="text" class="form-control" id="name" name="name" value="{{ $roles->name }}" required>
                         </div>
                     </div>

@@ -19,6 +19,7 @@
                         <tr>
                             <th>ID(s)</th>
                             <th>Name</th>
+                            <th>Permissions</th>
                             <th>Created At</th>
                             <th>Action</th>
                         </tr>
@@ -28,15 +29,16 @@
                         <tr>
                             <td>{{ $role->id }}</td>
                             <td>{{ $role->name }}</td>
+                            <td>{{ $role->permissions->implode('name', ', ') }}</td>
                             <td>{{ $role->created_at }}</td>
                             <td>
-                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></a>
                                 <form action="{{ route('roles.destroy', $role->id) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                 </form>
-                                <a href="{{ route('role.assignpermission', $role->id) }}" class="btn btn-secondary">Assign</a>
+                                <a href="{{ route('role.assign.permission', $role->id) }}" title="Assign Permission" class="btn btn-info btn-sm"><i class="fas fa-users-cog"></i></a>
 
                             </td>
                         </tr>

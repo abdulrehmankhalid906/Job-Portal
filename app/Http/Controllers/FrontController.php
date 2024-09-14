@@ -38,7 +38,6 @@ class FrontController extends Controller
     public function viewJob($id,$title)
     {
         $job = Job::with(['companies','countries','cities'])->Findorfail($id);
-        // dd($job);
 
         return view('frontend.viewJob',[
            'job' => $job,

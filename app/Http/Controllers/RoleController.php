@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -12,7 +13,14 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::with('permissions')->get();
+
+        
+        // foreach ($roles as $role) {
+        //     foreach ($role->permissions as $permission) {
+        //         dd($permission->name);  // Will dump the name of the first permission
+        //     }
+        // }
         return view('roles.roles',[
             'roles' => $roles
         ]);
@@ -92,8 +100,21 @@ class RoleController extends Controller
         return redirect('roles')->with('success','Role Deleted Successfully!');
     }
 
-    public function assignpermission($id)
+    public function assignRolePermissions(Request $request, string $id)
     {
-        return $id;   
+        $role = Role::findOrFail($id);
+        return view('roles.assign_permissions', [
+            'role' => $role,
+            'permissions' => Permission::all(),
+            'selected_permissions' => $role->permissions()->pluck('name')->toArray(),
+        ]);
+    }
+
+    public function updateRolePermissions(Request $request, string $id)
+    {    
+        $role = Role::find($id);
+        $role->syncPermissions($request->permissions);
+
+        return redirect()->back()->with('success', 'Permissions assigned to role successfully');
     }
 }

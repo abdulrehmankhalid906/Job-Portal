@@ -5,22 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use App\Models\City;
 use App\Models\User;
-use App\Models\Country;
-use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Http\Requests\JobRequest;
 use App\Models\Apply;
 use App\Models\Company;
+use App\Models\Country;
+use App\Models\Category;
 use App\Models\Testimonial;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Requests\JobRequest;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $jobs = Job::where('user_id', $user->id)->count();
-        // $company = Apply::where('user_id', $user->id)->count();
+        $jobs = Job::where('user_id', Auth::user()->id)->count();
+        // $company = Apply::where('user_id', Auth::user()->id->count();
 
 
         return view('frontdashboard.dashboard',[
@@ -31,12 +31,10 @@ class DashboardController extends Controller
     public function companyProfile()
     {
         $users = User::with('company')->where('id', Auth::user()->id)->first();
-
-        // dd($users);
-        $categories = [];
-
+       
+        //dd($users);
         return view('company.profile', [
-            'categories' => $categories,
+            'categories' => Category::get(),
             'countries' => Country::get(),
             'cities' => City::get(),
             'users' => $users
@@ -45,13 +43,24 @@ class DashboardController extends Controller
 
     public function updateCompany(Request $request)
     {
+        $company = Company::where('user_id', Auth::user()->id)->first();
 
-        if($request->hasfile('company_img'))
-        {
+        $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
+
+        if ($request->hasFile('company_img')) {
             $co_img = $request->file('company_img');
-            $fileName = time(). '-' .$co_img->getClientOriginalName();
+            $fileName = time() . '-' . $co_img->getClientOriginalName();
             $co_img->storeAs('public/images/', $fileName);
             $data['company_img'] = $fileName;
+        }
+
+        if ($company) {
+            $company->update($data);
+            return redirect()->back()->with('success', 'Company profile updated successfully');
+        } else {
+            $company = Company::create($data);
+            return redirect()->back()->with('success', 'Company profile created successfully');
         }
     }
 
@@ -75,6 +84,7 @@ class DashboardController extends Controller
         $data = $validatedData + [
             'user_id' => auth()->id(),
             'company_id' => auth()->user()->company->id,
+            'slug' => Str::slug($request->title, '-')
         ];
 
         if($request->hasFile('extra_document'))
@@ -97,8 +107,7 @@ class DashboardController extends Controller
 
     public function listing()
     {
-        $user = Auth::user();
-        $company = Company::with(['jobs','countries','cities'])->where('user_id', $user->id)->first();
+        $company = Company::with(['jobs','countries','cities'])->where('user_id', Auth::user()->id)->first();
 
         return view('company.job_listing',[
             'company' => $company,
@@ -116,8 +125,7 @@ class DashboardController extends Controller
     //Companies Feedback
     public function writeFeedback()
     {
-        $users = Auth::user();
-        $user = User::where('id', $users->id)->with(['company','testimonials'])->first();
+        $user = User::where('id', Auth::user()->id)->with(['company','testimonials'])->first();
 
         return view('company.feedback',[
             'user' => $user

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -12,9 +14,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get();
+        $users = User::with('roles')->get();
+
+        // dd($users);
         return view('users.user',[
-            'users' => $users,
+            'users' => $users
         ]);
     }
 
@@ -23,7 +27,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::get();
+        return view('users.add',[
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -31,7 +38,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required',
+            'role' => 'required'
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);  //to assign role to user
+
+        $user->syncRoles($request->role);
+
+        return redirect('/users')->with('success', 'Roles Assigned to User Successfully!');
     }
 
     /**
@@ -48,49 +70,36 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        $user = User::findorFail($id);
-
-        // dd($user);
-        return view('users.view',[
+        return view('users.edit',[
             'user' => $user,
+            'roles' => Role::select('name')->get(),
+            'selected_role' => $user->roles()->pluck('name')->first(),
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::findorFail($id);
-
         $user->update([
             'name' => $request->name,
-            'email' => $request->email
+            'email' => $request->email,
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User is updated');
+        $user->syncRoles($request->role_id);
+
+        return redirect('/users')->with('success', 'User Updated Successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //simple user delete
-        //$user = User::findOrFail($id);
-
-        // Delete everything associated with this user
-        // $user = User::with('posts')->findOrFail($id);
-
-        // foreach($user->posts as $users)
-        // {
-        //     $users->delete();
-        // }
-
-        // $user->delete();
-
-        // return redirect()->back()->with('success','User and his posts deleted successfully!');
+        $user->delete();
+        return redirect('/users')->with('success', 'User Deleted Successfully!');
     }
 }

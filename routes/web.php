@@ -32,7 +32,7 @@ Auth::routes([
 ]);
 
 Route::get('/', [FrontController::class, 'frontHome'])->name('frontHome');
-Route::get('jobs/{id}/{title}', [FrontController::class, 'viewJob'])->name('viewJob');
+Route::get('jobs/{id}/{slug}', [FrontController::class, 'viewJob'])->name('viewJob');
 Route::post('applyjob', [FrontController::class, 'applyjobs'])->name('applyjobs');
 
 
@@ -47,7 +47,8 @@ Route::get('/job-listing', [DashboardController::class, 'listing'])->name('listi
 Route::get('/applicants', [DashboardController::class, 'applicants'])->name('applicants')->middleware('auth');
 
 // Route::get('/retrive-users',[TestApiController::class,'RetriveUserDate']); we can use api even in web.php
-Route::get('/assign-permission/{id}', [RoleController::class, 'assignpermission'])->name('role.assignpermission');
+Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');
+Route::post('/assign-permission/{id}', [RoleController::class, 'updateRolePermissions'])->name('role.update.permission');
 
 
 //feedback Section

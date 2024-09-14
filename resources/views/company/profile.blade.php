@@ -14,29 +14,29 @@
                     <div class="row">
                         <div class="col-4 col-sm-4">
                             <label for="">Registered Name</label>
-                            <input type="text" class="form-control" name="name" id="name" value="">
+                            <input type="text" class="form-control" name="name" id="name" value="{{ $users->name ?? '' }}">
                         </div>
 
                         <div class="col-4 col-sm-4">
                             <label for="">Registered Email</label>
-                            <input type="email" class="form-control" name="email" id="email" value="">
+                            <input type="email" class="form-control" name="email" id="email" value="{{ $users->email ?? '' }}">
                         </div>
 
                         <div class="col-4 col-sm-4">
                             <label for="">Old Password</label>
-                            <input type="password" class="form-control" name="old_password" id="old_password" value="">
+                            <input type="password" class="form-control" name="old_password" id="old_password">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-4 col-sm-4">
                             <label for="">New Password</label>
-                            <input type="password" class="form-control" name="password" id="password" value="">
+                            <input type="password" class="form-control" name="password" id="password">
                         </div>
 
                         <div class="col-4 col-sm-4">
                             <label for="">Confirm Password</label>
-                            <input type="password" class="form-control" name="confirm_password" id="confirm_password" value="">
+                            <input type="password" class="form-control" name="confirm_password" id="confirm_password">
                         </div>
                     </div>
 
@@ -69,24 +69,24 @@
 
                         <div class="col-3 col-sm-3">
                             <label for="">Founded Date</label>
-                            <input type="text" class="form-control" name="email" id="email" value="{{ $users->company->founded_date ?? '' }}">
+                            <input type="date" class="form-control" name="founded_date" id="founded_date" value="{{ $users->company->founded_date ?? '' }}">
                         </div>
 
                         <div class="col-3 col-sm-3">
                             <label for="">Total Employees</label>
-                            <input type="text" class="form-control" name="old_password" id="old_password" value="{{ $users->company->employees_no ?? '' }}">
+                            <input type="text" class="form-control" name="employees_no" id="employees_no" value="{{ $users->company->employees_no ?? '' }}">
                         </div>
 
                         <div class="col-3 col-sm-3">
                             <label for="">Company Type</label>
-                            <input type="text" class="form-control" name="password" id="password" value="" value="{{ $users->company->company_type ?? '' }}">
+                            <input type="text" class="form-control" name="company_type" id="company_type" value="{{ $users->company->company_type ?? '' }}">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-3 col-sm-3">
                             <label for="">Company Country</label>
-                            <select class="form-select form-control" id="country_id">
+                            <select class="form-select form-control" id="country_id" name="country_id">
                                 <option value="">Select One</option>
                                 @foreach ($countries as $country)
                                     <option value="{{ $country->id }}">{{ $country->name }} - {{ $country->shortcode }}</option>
@@ -96,14 +96,14 @@
     
                         <div class="col-3 col-sm-3">
                             <label for="">Company City</label>
-                            <select class="form-select form-control" id="city_id">
+                            <select class="form-select form-control" id="city_id" name="city_id">
                                 <option value="">Select One</option>
                             </select>
                         </div>
 
                         <div class="col-3 col-sm-3">
                             <label for="">Company Image</label>
-                            <input type="file" class="form-control" name="company_img" id="company_img" value="">
+                            <input type="file" class="form-control" name="company_img" id="company_img">
                         </div>
                     </div>
 

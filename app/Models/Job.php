@@ -15,6 +15,7 @@ class Job extends Model
         'user_id',
         'company_id',
         'title',
+        'slug',
         'description',
         'category_id',
         'country_id',

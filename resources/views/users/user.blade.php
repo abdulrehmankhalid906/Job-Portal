@@ -29,7 +29,7 @@
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td></td>
+                                <td>{{ $user->roles->implode('name', ', ') }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td>
                                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit</a>

@@ -129,7 +129,7 @@
                                             <small class="text-truncate mb-3"><i class="far fa-calendar-alt text-primary me-2"></i>Date Line: {{ $jobs->valid_till }}</small>
                                             <div class="d-flex mb-3">
                                                 {{-- <a class="btn btn-primary" href="{{ route('viewJob', ['id' => $jobs->id, 'title' => $jobs->title]) }}">Apply Now</a> --}}
-                                                <a class="btn btn-primary" href="{{ route('viewJob', ['title'=> $jobs->title, 'id'=>$jobs->id]) }}">Apply Now</a>
+                                                <a class="btn btn-primary" href="{{ route('viewJob', ['title'=> $jobs->slug, 'id'=>$jobs->id]) }}">Apply Now</a>
 
 
                                                 {{-- <a class="btn btn-primary" href="{{ route('viewJob', $jobs->title) }}">Apply Now</a> --}}
