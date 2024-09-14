@@ -16,7 +16,7 @@ class FrontController extends Controller
 {
     public function frontHome()
     {
-        $categories = Category::all();
+        $categories = Category::withCount('jobs')->get();
         $countries = Country::all();
         $cities = City::all();
         $testimonials = Testimonial::with('company')->get();

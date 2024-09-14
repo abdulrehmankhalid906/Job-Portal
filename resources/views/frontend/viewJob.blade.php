@@ -103,7 +103,7 @@
                     <div class="col-lg-4">
                         <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
                             <h4 class="mb-4">Job Summery</h4>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Published: {{ $job->created_at }}</p>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>Published: {{ $job->created_at->format('d-m-y') }}</p>
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Vacancy: 00</p>
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Job Nature: {{ $job->job_type }}</p>
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Salary: {{ $job->salary_range }}</p>
@@ -113,6 +113,12 @@
                         <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
                             <h4 class="mb-4">Company Detail</h4>
                             <p class="m-0">{{ $job->companies->company_name }}</p>
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="{{ asset('storage/images/'.$job->companies->company_img) }}" class="img-fluid"></img>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -51,7 +51,7 @@ class DashboardController extends Controller
         if ($request->hasFile('company_img')) {
             $co_img = $request->file('company_img');
             $fileName = time() . '-' . $co_img->getClientOriginalName();
-            $co_img->storeAs('public/images/', $fileName);
+            $co_img->storeAs('public/Images/logo', $fileName);
             $data['company_img'] = $fileName;
         }
 
