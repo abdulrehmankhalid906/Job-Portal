@@ -14,12 +14,13 @@
 
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('jobs.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('jobs.store', $job->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="row g-3">
                         <div class="col-6 col-sm-6">
                             <label for="">Job Title</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title">
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{ $job->title }}">
                             @error('title')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -33,7 +34,7 @@
                                 <option value="">Select One</option>
                                 @if(count($categories) > 0)
                                     @foreach ($categories as $category)
-                                        <option value={{ $category->id }}>{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}" {{ $job->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                     @endforeach
                                 @endif
 
@@ -51,7 +52,7 @@
                                 <option value="">Select One</option>
                                 @if(count($countries) > 0)
                                     @foreach ($countries as $country)
-                                        <option value={{ $country->id }}>{{ $country->name }}</option>
+                                        <option value="{{ $country->id }}" {{ $job->country_id == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                                     @endforeach
                                 @endif
 
@@ -67,11 +68,11 @@
                             <label for="">Select City</label>
                             <select class="form-select form-select-md @error('city_id') is-invalid @enderror" name="city_id" id="city_id">
                                 <option value="">Select One</option>
-                                {{-- @if(count($cities) > 0)
+                                @if(count($cities) > 0)
                                     @foreach ($cities as $city)
-                                        <option value={{ $city->id }}>{{ $city->name }}</option>
+                                        <option value="{{ $city->id }}" {{ $job->city_id == $city->id ? 'selected' : '' }}>{{ $city->name }}</option>
                                     @endforeach
-                                @endif --}}
+                                @endif
 
                                 @error('city_id')
                                     <span class="invalid-feedback" role="alert">
@@ -87,10 +88,10 @@
                                 <option value="">Select One</option>
                                 @if(count($positions) > 0)
                                     @foreach ($positions as $position)
-                                        <option value="{{ $position }}">{{ $position }}</option>
+                                        <option value="{{ $position }}" {{ $job->position_level == $position ? 'selected' : '' }}>{{ $position }}</option>
                                     @endforeach
                                 @endif
-                               
+
                                 @error('position_level')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -105,7 +106,7 @@
                                 <option value="">Select One</option>
                                 @if(count($types) > 0)
                                     @foreach ($types as $type)
-                                        <option value="{{ $type }}">{{ $type }}</option>
+                                        <option value="{{ $type }}" {{ $job->job_type == $type ? 'selected' : '' }}>{{ $type }}</option>
                                     @endforeach
                                 @endif
 
@@ -123,10 +124,11 @@
                                 <option value="">Select One</option>
                                 @if(count($ranges) > 0)
                                     @foreach ($ranges as $range)
-                                        <option value="{{ $range }}">{{ $range }}</option>
+                                        <option value="{{ $range }}" {{ $job->salary_range == $range ? 'selected' : '' }}>{{ $range }}</option>
                                     @endforeach
                                 @endif
                             </select>
+
                             @error('salary_range')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -136,7 +138,7 @@
 
                         <div class="col-12 col-sm-6">
                             <label for="">Valid Till</label>
-                            <input type="date" class="form-control @error('valid_till') is-invalid @enderror" placeholder="Valid Till" name="valid_till" id="valid_till">
+                            <input type="date" class="form-control @error('valid_till') is-invalid @enderror" placeholder="Valid Till" name="valid_till" id="valid_till" value="{{ $job->valid_till }}">
                             @error('valid_till')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -155,7 +157,7 @@
                         </div>
 
                         <div class="col-12">
-                            <textarea class="form-control @error('description') is-invalid @enderror" rows="10" cols="15" placeholder="Roles & Responsibilites" name="description" id="description"></textarea>
+                            <textarea class="form-control @error('description') is-invalid @enderror" rows="10" cols="15" placeholder="Roles & Responsibilites" name="description" id="description">{{ $job->description }}</textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

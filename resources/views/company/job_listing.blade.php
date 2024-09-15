@@ -33,8 +33,8 @@
                                         <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                                             <small class="text-truncate mb-3"><i class="far fa-calendar-alt text-primary me-2"></i>Date Line:{{ $job->valid_till }}</small>
                                             <div class="d-flex mb-3">
-                                                {{-- <a class="btn btn-primary" href="{{ route('viewJob', ['id' => $jobs->id, 'title' => $jobs->title]) }}">Apply Now</a> --}}
-                                                <a class="btn btn-primary" href="">Apply Now</a>
+                                                <a class="btn btn-primary" href="{{ route('jobs.edit',$job->id) }}">Edit Job</a> &nbsp;
+                                                <a class="btn btn-secondary" href="{{ route('viewJob', ['id' => $job->id, 'slug' => $job->slug]) }}">View Job</a>
                                             </div>
                                         </div>
                                     </div>

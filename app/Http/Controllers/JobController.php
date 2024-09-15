@@ -11,9 +11,15 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\JobRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\CommonRepository;
 
 class JobController extends Controller
 {
+    protected $CommonRepository;
+    public function __construct(CommonRepository $CommonRepository)
+    {
+        $this->CommonRepository = $CommonRepository;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -34,7 +40,10 @@ class JobController extends Controller
         return view('company.post_job', [
             'categories' => Category::get(),
             'countries' => Country::get(),
-            'cities' => City::get()
+            'cities' => City::get(),
+            'positions' => $this->CommonRepository->positions(),
+            'types' => $this->CommonRepository->types(),
+            'ranges' => $this->CommonRepository->range()
         ]);
     }
 
@@ -75,9 +84,19 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $job = Job::findorFail($id);
+        return view('company.edit_job', [
+            'categories' => Category::get(),
+            'countries' => Country::get(),
+            'cities' => City::where('country_id', $job->country_id)->get(),
+            'job' => $job,
+            'positions' => $this->CommonRepository->positions(),
+            'types' => $this->CommonRepository->types(),
+            'ranges' => $this->CommonRepository->range()
+        ]);
+
     }
 
     /**
