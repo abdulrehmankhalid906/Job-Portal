@@ -55,14 +55,15 @@ Route::post('/assign-permission/{id}', [RoleController::class, 'updateRolePermis
 Route::get('/feedback',[DashboardController::class,'writeFeedback'])->name('feedback')->middleware('auth');
 Route::post('/feedback',[DashboardController::class,'storeFeedback'])->name('save-feedback')->middleware('auth');
 //Some resource
-
-Route::resources([
-    'users' => UserController::class,
-    'roles' => RoleController::class,
-    'permissions' => PermissionController::class,
-    'category' => CategoryController::class,
-    'countries' => CountryController::class,
-    'cities' => CityController::class,
-    'companies' => CompanyController::class,
-    'testimonials' => TestimonialController::class,
-]);
+Route::middleware(['auth'])->group(function () {
+    Route::resources([
+        'users' => UserController::class,
+        'roles' => RoleController::class,
+        'permissions' => PermissionController::class,
+        'category' => CategoryController::class,
+        'countries' => CountryController::class,
+        'cities' => CityController::class,
+        'companies' => CompanyController::class,
+        'testimonials' => TestimonialController::class,
+    ]);
+});

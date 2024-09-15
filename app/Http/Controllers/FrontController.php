@@ -35,13 +35,13 @@ class FrontController extends Controller
 
     }
 
-    public function viewJob($id,$title)
+    public function viewJob($id,$slug)
     {
         $job = Job::with(['companies','countries','cities'])->Findorfail($id);
 
         return view('frontend.viewJob',[
            'job' => $job,
-           'title' => $title
+           'title' => $slug
         ]);
     }
 
