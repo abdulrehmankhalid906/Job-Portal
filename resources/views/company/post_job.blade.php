@@ -5,16 +5,16 @@
     <div class="col-lg-12">
         <div class="card-header align-items-center d-flex">
             <h4 class="card-title mb-0 flex-grow-1">Post Job</h4>
-            <div class="flex-shrink-0">
+            {{-- <div class="flex-shrink-0">
                 <a href="{{ route('category.create') }}" class="btn btn-success btn-label btn-sm">
                     <i class="ri-add-fill label-icon align-middle fs-16 me-2"></i> Add New
                 </a>
-            </div>
+            </div> --}}
         </div>
 
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('postJob') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('jobs.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3">
                         <div class="col-6 col-sm-6">

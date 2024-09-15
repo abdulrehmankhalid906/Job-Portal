@@ -43,13 +43,13 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('postJob') }}">
+                <a class="sidebar-link" href="{{ route('jobs.create') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">Post Job</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('listing') }}">
+                <a class="sidebar-link" href="{{ route('jobs.index') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">My Jobs</span>
                 </a>
             </li>

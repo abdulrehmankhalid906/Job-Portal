@@ -22,7 +22,6 @@ class DashboardController extends Controller
         $jobs = Job::where('user_id', Auth::user()->id)->count();
         // $company = Apply::where('user_id', Auth::user()->id->count();
 
-
         return view('frontdashboard.dashboard',[
             'jobs' => $jobs,
         ]);
@@ -62,63 +61,5 @@ class DashboardController extends Controller
             $company = Company::create($data);
             return redirect()->back()->with('success', 'Company profile created successfully');
         }
-    }
-
-    public function postJob()
-    {
-        $categories = Category::all();
-        $countries = Country::all();
-        $cities = City::all();
-
-        return view('company.post_job',[
-            'categories' => $categories,
-            'countries' => $countries,
-            'cities' => $cities
-        ]);
-    }
-
-    public function newPost(JobRequest $request)
-    {
-        $validatedData = $request->validated();
-
-        $data = $validatedData + [
-            'user_id' => auth()->id(),
-            'company_id' => auth()->user()->company->id,
-            'slug' => Str::slug($request->title, '-')
-        ];
-
-        if($request->hasFile('extra_document'))
-        {
-            $file = $request->file('extra_document');
-
-            // dd($file );
-
-            $fileName = time() . '-' . $file->getClientOriginalName();
-
-            $file->storeAs('public/images/', $fileName);
-
-            $data['extra_document'] = $fileName;
-        }
-
-        Job::create($data);
-
-        return redirect()->back()->with('success','The job has been posted');
-    }
-
-    public function listing()
-    {
-        $company = Company::with(['jobs','countries','cities'])->where('user_id', Auth::user()->id)->first();
-
-        return view('company.job_listing',[
-            'company' => $company,
-        ]);
-    }
-
-    public function viewApplicant($id)
-    {
-        $apply = Apply::with('jobs')->where('id', $id)->first();
-        return view('company.view_applicant',[
-            'apply' => $apply
-        ]);
     }
 }

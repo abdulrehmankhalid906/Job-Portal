@@ -16,6 +16,7 @@ use App\Http\Controllers\Combine\CityController;
 use App\Http\Controllers\Combine\CountryController;
 use App\Http\Controllers\Combine\CategoryController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -43,8 +44,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/profile', [DashboardController::class, 'companyProfile'])->name('companyProfile')->middleware('auth');
 Route::post('/profile', [DashboardController::class, 'updateCompany'])->name('updateCompany')->middleware('auth');
 
-Route::get('/post-job', [DashboardController::class, 'postJob'])->name('postJob')->middleware('auth');
-Route::post('/post-job', [DashboardController::class, 'newPost'])->name('newPost')->middleware('auth');
 Route::get('/job-listing', [DashboardController::class, 'listing'])->name('listing')->middleware('auth');
 
 // Route::get('/retrive-users',[TestApiController::class,'RetriveUserDate']); we can use api even in web.php
@@ -63,6 +62,7 @@ Route::middleware(['auth'])->group(function () {
         'companies' => CompanyController::class,
         'applicants' => ApplicantController::class,
         'testimonials' => TestimonialController::class,
+        'jobs' => JobController::class,
         'feedbacks' => FeedbackController::class, 
     ]);
 });
