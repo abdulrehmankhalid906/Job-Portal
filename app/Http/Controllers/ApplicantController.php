@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Apply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\CommonRepository;
 
 class ApplicantController extends Controller
 {
+    protected $CommonRepository;
+    public function __construct(CommonRepository $CommonRepository)
+    {
+        $this->CommonRepository = $CommonRepository;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -51,8 +57,9 @@ class ApplicantController extends Controller
     {
         $apply = Apply::with('jobs')->where('id', $id)->first();
         
-        return view('company.view_applicant',[
-            'apply' => $apply
+        return view('company.review_job',[
+            'apply' => $apply,
+            'statuses' => $this->CommonRepository->status(),
         ]);
     }
 
@@ -61,7 +68,11 @@ class ApplicantController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $apply = Apply::where('id', $id)->first();
+
+        $apply->update($request->all());
+        
+        return redirect()->back()->with('success', 'Applicant Status updated successfully');
     }
 
     /**

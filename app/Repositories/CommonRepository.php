@@ -26,4 +26,10 @@ class CommonRepository
         $ranges = ['20K-30K','50K-80K','150K-300K','350K+'];
         return $ranges;
     }
+
+    public function status()
+    {
+        $statuses = ['Pending','Approved','Rejected'];
+        return $statuses;
+    }
 }
