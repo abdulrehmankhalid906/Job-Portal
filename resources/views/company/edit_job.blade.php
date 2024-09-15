@@ -14,7 +14,7 @@
 
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('jobs.store', $job->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('jobs.update', $job->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row g-3">

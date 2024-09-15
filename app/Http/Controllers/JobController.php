@@ -104,8 +104,20 @@ class JobController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        $company = Job::where('id', $id)->first();
+
+        $data = $request->all();
+        
+        if ($request->hasFile('extra_document')) {
+            $co_img = $request->file('extra_document');
+            $fileName = time() . '-' . $co_img->getClientOriginalName();
+            $co_img->storeAs('public/images/', $fileName);
+            $data['extra_document'] = $fileName;
+        }
+
+        $company->update($data);
+        return redirect()->back()->with('success', 'Job updated successfully');
+    } 
 
     /**
      * Remove the specified resource from storage.
