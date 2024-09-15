@@ -38,24 +38,33 @@
                     <thead>
                         <tr>
                             <th>ID(s)</th>
-                            <th>Company Name</th>
+                            <th>Title</th>
                             <th>Applicants Name</th>
-                            <th>Category</th>
-                            <th>Company Reg</th>
+                            <th>Status</th>
+                            <th>Apply Type</th>
+                            <th>Application Date</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($companies as $company)
+                        @foreach ($applies as $apply)
                             <tr>
-                                <td>{{ $company->id }}</td>
-                                <td>{{ $company->company_name }}</td>
-                                <td>{{ $company->users->name }}</td>
-                                <td>{{ $company->company_type ?? 'N.A' }}</td>
-                                <td>{{ $company->created_at }}</td>
-                                <td>Action</td>
+                                <td>{{ $apply->id }}</td>
+                                <td>{{ $apply->jobs->title }}</td>
+                                <td>{{ $apply->name }}</td>
+                                <td>{{ $apply->status }}</td>
+                                <td>{{ $apply->apply_type ?? 'N.A' }}</td>
+                                <td>{{ $apply->created_at }}</td>
+                                <td>
+                                    <a href="{{ route('applicants.edit', $apply->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></a>
+                                    <form action="{{ route('applicants.destroy', $apply->id) }}" method="POST" style="display: inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </form>
+                                </td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>

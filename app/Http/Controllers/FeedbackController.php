@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
+use App\Models\User;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class CompanyController extends Controller
+class FeedbackController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $companies = Company::with('users')->get();
-        return view('companies.companies',[
-            'companies' => $companies
-        ]);
+        //
     }
 
     /**
@@ -23,7 +22,11 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        $user = User::where('id', Auth::user()->id)->with(['company','testimonials'])->first();
+
+        return view('company.feedback',[
+            'user' => $user
+        ]);
     }
 
     /**
@@ -31,7 +34,14 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Testimonial::create([
+            'user_id' => auth()->id(),
+            'company_id' => $request->company_id,
+            'feedback' => $request->feedback,
+            'rating' => $request->rating
+        ]);
+
+        return redirect()->back()->with('success','Thank you for submitting the feedback');
     }
 
     /**

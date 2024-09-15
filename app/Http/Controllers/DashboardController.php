@@ -114,34 +114,11 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function applicants()
+    public function viewApplicant($id)
     {
-
-        return view('company.applicants');
-    }
-
-
-
-    //Companies Feedback
-    public function writeFeedback()
-    {
-        $user = User::where('id', Auth::user()->id)->with(['company','testimonials'])->first();
-
-        return view('company.feedback',[
-            'user' => $user
+        $apply = Apply::with('jobs')->where('id', $id)->first();
+        return view('company.view_applicant',[
+            'apply' => $apply
         ]);
     }
-
-    public function storeFeedback(Request $request)
-    {
-        Testimonial::create([
-            'user_id' => auth()->id(),
-            'company_id' => $request->company_id,
-            'feedback' => $request->feedback,
-            'rating' => $request->rating
-        ]);
-
-        return redirect()->back()->with('success','Thank you for submitting the feedback');
-    }
-
 }

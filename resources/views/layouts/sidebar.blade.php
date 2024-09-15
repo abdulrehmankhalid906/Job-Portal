@@ -55,13 +55,13 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('applicants') }}">
+                <a class="sidebar-link" href="{{ route('applicants.index') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">Job Applicants</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('feedback') }}">
+                <a class="sidebar-link" href="{{ route('feedbacks.create') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">Give Feedback</span>
                 </a>
             </li>

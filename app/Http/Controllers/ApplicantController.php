@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
+use App\Models\Apply;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class CompanyController extends Controller
+class ApplicantController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $companies = Company::with('users')->get();
-        return view('companies.companies',[
-            'companies' => $companies
+        $applies = Apply::with('jobs')->where('company_id', Auth::user()->company->id)->get();
+
+        return view('company.applicants',[
+            'applies' => $applies
         ]);
     }
 
@@ -39,7 +41,7 @@ class CompanyController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -47,7 +49,11 @@ class CompanyController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $apply = Apply::with('jobs')->where('id', $id)->first();
+        
+        return view('company.view_applicant',[
+            'apply' => $apply
+        ]);
     }
 
     /**

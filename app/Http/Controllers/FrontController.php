@@ -47,7 +47,6 @@ class FrontController extends Controller
 
     public function applyjobs(ApplyRequest $request)
     {
-
         $email = $request->email;
         $job_id = $request->job_id;
 

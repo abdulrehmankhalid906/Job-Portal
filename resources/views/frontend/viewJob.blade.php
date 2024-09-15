@@ -78,13 +78,13 @@
                                 <input type="hidden" value="{{ $job->companies->id }}" name="company_id" readonly>
                                 <div class="row g-3">
                                     <div class="col-12 col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Your Name" id="name" name="name">
+                                        <input type="text" class="form-control" placeholder="Your Name" id="name" name="name" value="{{ old('name') }}">
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        <input type="email" class="form-control" placeholder="Your Email" id="email" name="email">
+                                        <input type="email" class="form-control" placeholder="Your Email" id="email" name="email" value="{{ old('email') }}">
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Portfolio Website" id="portweb" name="portweb">
+                                        <input type="text" class="form-control" placeholder="Portfolio Website" id="portweb" name="portweb" value="{{ old('portweb') }}">
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <input type="file" class="form-control bg-white" id="upload_cv" name="upload_cv">

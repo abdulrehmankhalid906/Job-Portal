@@ -10,10 +10,12 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\Combine\CityController;
 use App\Http\Controllers\Combine\CountryController;
 use App\Http\Controllers\Combine\CategoryController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -44,16 +46,11 @@ Route::post('/profile', [DashboardController::class, 'updateCompany'])->name('up
 Route::get('/post-job', [DashboardController::class, 'postJob'])->name('postJob')->middleware('auth');
 Route::post('/post-job', [DashboardController::class, 'newPost'])->name('newPost')->middleware('auth');
 Route::get('/job-listing', [DashboardController::class, 'listing'])->name('listing')->middleware('auth');
-Route::get('/applicants', [DashboardController::class, 'applicants'])->name('applicants')->middleware('auth');
 
 // Route::get('/retrive-users',[TestApiController::class,'RetriveUserDate']); we can use api even in web.php
 Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');
 Route::post('/assign-permission/{id}', [RoleController::class, 'updateRolePermissions'])->name('role.update.permission');
 
-
-//feedback Section
-Route::get('/feedback',[DashboardController::class,'writeFeedback'])->name('feedback')->middleware('auth');
-Route::post('/feedback',[DashboardController::class,'storeFeedback'])->name('save-feedback')->middleware('auth');
 //Some resource
 Route::middleware(['auth'])->group(function () {
     Route::resources([
@@ -64,6 +61,8 @@ Route::middleware(['auth'])->group(function () {
         'countries' => CountryController::class,
         'cities' => CityController::class,
         'companies' => CompanyController::class,
+        'applicants' => ApplicantController::class,
         'testimonials' => TestimonialController::class,
+        'feedbacks' => FeedbackController::class, 
     ]);
 });
