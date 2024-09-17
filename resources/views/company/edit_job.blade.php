@@ -146,7 +146,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-12 col-sm-6">
+                        <div class="col-lg-6 col-sm-6">
                             <label for="">Extra Documents</label>
                             <input type="file" class="form-control bg-white @error('extra_document') is-invalid @enderror" name="extra_document" id="extra_document">
                             @error('extra_document')
@@ -154,6 +154,20 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+                        </div>
+
+                        <div class="col-lg-6 col-sm-6">
+                            <label for="">Boost Post</label>
+                            <div>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="boost_post" value="Yes" {{ isset($job->highlight_post) && $job->highlight_post == 1 ? 'checked' : '' }}>
+                                    <span class="form-check-label">Yes</span>
+                                </label>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="boost_post" value="No" {{ isset($job->highlight_post) && $job->highlight_post == 0 ? 'checked' : '' }}>
+                                    <span class="form-check-label">No</span>
+                                </label>
+                            </div>
                         </div>
 
                         <div class="col-12">

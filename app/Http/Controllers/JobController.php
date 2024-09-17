@@ -25,10 +25,10 @@ class JobController extends Controller
      */
     public function index()
     {
-        $company = Company::with(['jobs','countries','cities'])->where('user_id', Auth::user()->id)->first();
+        $jobs = Job::with(['companies', 'countries', 'cities'])->where('user_id', Auth::user()->id)->paginate(3);
 
         return view('company.job_listing',[
-            'company' => $company,
+            'jobs' => $jobs,
         ]);
     }
 
@@ -107,7 +107,8 @@ class JobController extends Controller
         $company = Job::where('id', $id)->first();
 
         $data = $request->all();
-        
+        $data['highlight_post'] = $request->boost_post == 'Yes' ? 1 : 0;  
+
         if ($request->hasFile('extra_document')) {
             $co_img = $request->file('extra_document');
             $fileName = time() . '-' . $co_img->getClientOriginalName();

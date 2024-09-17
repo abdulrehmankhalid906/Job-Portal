@@ -113,7 +113,7 @@
                         <div id="tab-1" class="tab-pane fade show p-0 active">
                             {{-- @dump($jobdata); --}}
                             @foreach ($jobdata as $jobs)
-                                <div class="job-item p-4 mb-4">
+                                <div class="job-item p-4 mb-4" style="background-color: {{ $jobs->highlight_post == '1' ? '#e9e9e9' : '' }}">
                                     <div class="row g-5">
                                         <div class="col-sm-12 col-md-8 d-flex align-items-center">
                                             <img class="flex-shrink-0 img-fluid border rounded" src="{{ asset('storage/images/'. $jobs->extra_document) }}" alt="" style="width: 80px; height: 80px;">
@@ -148,6 +148,8 @@
 
         <!-- Testimonial Start -->
         @include('frontend.testimonial')
+
+        @include('frontend.overall_rating')
 
 
         <!-- Footer Start -->

@@ -24,7 +24,8 @@ class Job extends Model
         'job_type',
         'salary_range',
         'valid_till',
-        'extra_document'
+        'extra_document',
+        'highlight_post'
 
     ];
 

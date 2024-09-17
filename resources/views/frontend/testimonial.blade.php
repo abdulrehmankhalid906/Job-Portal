@@ -4,10 +4,14 @@
         <div class="owl-carousel testimonial-carousel">
             {{-- @dump($testimonials) --}}
             @foreach ($testimonials as $testimonial)
-
                 <div class="testimonial-item bg-light rounded p-4">
                     <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                     <p>{{ $testimonial->feedback }}</p>
+                    <div class="rating mb-3 text-center">
+                        @for ($i = 1; $i <= 5; $i++)
+                            <i class="fa fa-star{{ $i <= $testimonial->rating ? '' : '-o' }}" style="color: #FFD700;"></i>
+                        @endfor
+                    </div>
                     <div class="d-flex align-items-center">
                         <img class="img-fluid flex-shrink-0 rounded" src="img/testimonial-1.jpg" style="width: 50px; height: 50px;">
                         <div class="ps-3">

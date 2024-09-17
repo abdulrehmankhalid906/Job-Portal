@@ -14,35 +14,33 @@
 
         <div class="card">
             <div class="card-body">
-                <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="tab-content">
-                        <div id="tab-1" class="tab-pane fade show p-0 active">
-                            @foreach ($company->jobs as $job)
-                                <div class="job-item p-4 mb-4" style="border: .5px solid black;">
-                                    <div class="row g-5">
-                                        <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                            <img class="flex-shrink-0 img-fluid border rounded" src="{{ asset('storage/images/' .$job->extra_document) }}" alt="" style="width: 80px; height: 80px;">
-                                            <div class="text-start ps-4">
-                                                <h5 class="mb-3">{{ $job->title }}</h5>
-                                                <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $job->countries->name }},{{ $job->cities->name }}</span>
-                                                <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>{{ $job->job_type }}</span>
-                                                <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>{{ $job->salary_range }}</span>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane fade show p-0 active">
+                        @foreach ($jobs as $job)
+                            <div class="job-item p-4 mb-4" style="border: .5px solid black; background-color: {{ $job->highlight_post == '1' ? '#e9e9e9' : '' }}">
+                                <div class="row g-5">
+                                    <div class="col-sm-12 col-md-8 d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid border rounded" src="{{ asset('storage/images/' .$job->extra_document) }}" alt="" style="width: 80px; height: 80px;">
+                                        <div class="text-start ps-4">
+                                            <h5 class="mb-3">{{ $job->title }}</h5>
+                                            <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $job->countries->name }},{{ $job->cities->name }}</span>
+                                            <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>{{ $job->job_type }}</span>
+                                            <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>{{ $job->salary_range }}</span>
 
-                                            </div>
                                         </div>
-                                        <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                            <small class="text-truncate mb-3"><i class="far fa-calendar-alt text-primary me-2"></i>Date Line:{{ $job->valid_till }}</small>
-                                            <div class="d-flex mb-3">
-                                                <a class="btn btn-primary" href="{{ route('jobs.edit',$job->id) }}">Edit Job</a> &nbsp;
-                                                <a class="btn btn-secondary" href="{{ route('viewJob', ['id' => $job->id, 'slug' => $job->slug]) }}">View Job</a>
-                                            </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+                                        <small class="text-truncate mb-3"><i class="far fa-calendar-alt text-primary me-2"></i>Deadline:{{ $job->valid_till }}</small>
+                                        <div class="d-flex mb-3">
+                                            <a class="btn btn-primary" href="{{ route('jobs.edit',$job->id) }}">Edit Job</a> &nbsp;
+                                            <a class="btn btn-secondary" href="{{ route('viewJob', ['id' => $job->id, 'slug' => $job->slug]) }}">View Job</a>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                            <a class="btn btn-primary py-3 px-5" href="">Browse More Jobs</a>
-                        </div>
+                            </div>
+                        @endforeach
                     </div>
+                    {!! $jobs->links() !!}
                 </div>
             </div>
         </div>
