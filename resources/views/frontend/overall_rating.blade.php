@@ -3,55 +3,30 @@
         <div class="row">
             <!-- Overall rating section -->
             <div class="col-md-4 text-center">
-                <h2 class="display-4">4.0</h2>
+                <h2 class="display-4">{{ $total_array['total_rating']}}</h2>
                 <div class="d-flex justify-content-center align-items-center">
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star text-warning"></i>
-                    <i class="fa fa-star-half-alt text-warning"></i>
+                    @for ($i = 1; $i <= 5; $i++)
+                        <i class="fa fa-star{{ $i <= $total_array['total_rating'] ? '' : '-o' }}" style="color: #FFD700;"></i>
+                    @endfor
                 </div>
-                <p class="mt-2"><i class="fa fa-user"></i> 1,050,008 total</p>
+                <p class="mt-2"><i class="fa fa-user"></i> {{ $total_array['total_count'] }} total</p>
             </div>
-            
-            <!-- Rating breakdown section -->
+
             <div class="col-md-8">
                 <div class="rating-breakdown">
-                    <div class="d-flex align-items-center">
-                        <span class="me-2">5 <i class="fa fa-star text-warning"></i></span>
-                        <div class="progress flex-grow-1">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    @foreach ($total_array['ratings'] as $rating => $count)
+                        @php
+                            $percentage = $total_array['total_count'] > 0 ? ($count / $total_array['total_count']) * 100 : 0;
+                            $color = $total_array['colors'][$rating] ?? 'bg-secondary';
+                        @endphp
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="me-2">{{ $rating }} <i class="fa fa-star text-warning"></i></span>
+                            <div class="progress flex-grow-1">
+                                <div class="progress-bar {{ $color }}" role="progressbar" style="width: {{ $percentage }}%" aria-valuenow="{{ $percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <span class="ms-2">{{ $count }}</span>
                         </div>
-                        <span class="ms-2">80%</span>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span class="me-2">4 <i class="fa fa-star text-warning"></i></span>
-                        <div class="progress flex-grow-1">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <span class="ms-2">60%</span>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span class="me-2">3 <i class="fa fa-star text-warning"></i></span>
-                        <div class="progress flex-grow-1">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <span class="ms-2">40%</span>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span class="me-2">2 <i class="fa fa-star text-warning"></i></span>
-                        <div class="progress flex-grow-1">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <span class="ms-2">20%</span>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span class="me-2">1 <i class="fa fa-star text-warning"></i></span>
-                        <div class="progress flex-grow-1">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <span class="ms-2">15%</span>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

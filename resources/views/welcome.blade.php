@@ -33,41 +33,6 @@
 
         @include('frontend.header')
 
-        {{-- <div class="container-fluid p-0">
-            <div class="owl-carousel header-carousel position-relative">
-                <div class="owl-carousel-item position-relative">
-                    <img class="img-fluid" src="{{ asset('frontend/img/carousel-1.jpg') }}" alt="">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
-                        <div class="container">
-                            <div class="row justify-content-start">
-                                <div class="col-10 col-lg-8">
-                                    <h1 class="display-3 text-white animated slideInDown mb-4">Find The Perfect Job That You Deserved</h1>
-                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.</p>
-                                    <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Search A Job</a>
-                                    <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Find A Talent</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="owl-carousel-item position-relative">
-                    <img class="img-fluid" src="{{ asset('frontend/img/carousel-1.jpg') }}" alt="">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
-                        <div class="container">
-                            <div class="row justify-content-start">
-                                <div class="col-10 col-lg-8">
-                                    <h1 class="display-3 text-white animated slideInDown mb-4">Find The Best Startup Job That Fit You</h1>
-                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.</p>
-                                    <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Search A Job</a>
-                                    <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Find A Talent</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
         <!-- About Start -->
         <div class="container-xxl py-5" id="about">
             <div class="container">
@@ -126,13 +91,13 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                            <small class="text-truncate mb-3"><i class="far fa-calendar-alt text-primary me-2"></i>Date Line: {{ $jobs->valid_till }}</small>
+                                            <small class="text-truncate mb-3"><i class="far fa-calendar-alt text-primary me-2"></i>Deadline: {{ $jobs->valid_till }} - Applicants: {{ $jobs->applies->count() }}</small>
+
                                             <div class="d-flex mb-3">
-                                                {{-- <a class="btn btn-primary" href="{{ route('viewJob', ['id' => $jobs->id, 'title' => $jobs->title]) }}">Apply Now</a> --}}
                                                 <a class="btn btn-primary" href="{{ route('viewJob', ['slug'=> $jobs->slug, 'id'=>$jobs->id]) }}">Apply Now</a>
 
 
-                                                {{-- <a class="btn btn-primary" href="{{ route('viewJob', $jobs->title) }}">Apply Now</a> --}}
+                                                {{-- <a class="btn btn-primary" href="{{ route('viewJob', $jobs->title) }}">Share Link</a> --}}
                                             </div>
                                         </div>
                                     </div>

@@ -1,4 +1,4 @@
-<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+<div class="container-xxl py-5">
     <div class="container">
         <h1 class="text-center mb-5">Our Clients Say!!!</h1>
         <div class="owl-carousel testimonial-carousel">

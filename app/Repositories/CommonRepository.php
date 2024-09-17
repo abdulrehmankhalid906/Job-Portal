@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\DB;
+
 class CommonRepository
 {
     public function __construct()
@@ -31,5 +33,19 @@ class CommonRepository
     {
         $statuses = ['Pending','Approved','Rejected'];
         return $statuses;
+    }
+
+    public function feedbackRating()
+    {
+       return DB::table('testimonials')
+            ->select(
+                DB::raw('SUM(CASE WHEN rating = 5 THEN 1 ELSE 0 END) as rat_5'),
+                DB::raw('SUM(CASE WHEN rating = 4 THEN 1 ELSE 0 END) as rat_4'),
+                DB::raw('SUM(CASE WHEN rating = 3 THEN 1 ELSE 0 END) as rat_3'),
+                DB::raw('SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) as rat_2'),
+                DB::raw('SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) as rat_1'),
+                DB::raw('COUNT(*) as total_count'),
+                DB::raw('SUM(rating) as total_rating')
+            )->first();
     }
 }
