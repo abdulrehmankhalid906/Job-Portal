@@ -110,13 +110,13 @@
             </div>
         </div>
 
-
         <!-- Testimonial Start -->
         @include('frontend.testimonial')
-
+        
         @include('frontend.overall_rating')
-
-
+        
+        @include('frontend.packages')
+        
         <!-- Footer Start -->
         @include('frontend.footer')
 

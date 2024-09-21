@@ -35,14 +35,7 @@
         <div class="copyright">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <div class="footer-menu">
-                        <a href="">Home</a>
-                        <a href="">Help</a>
-                        <a href="">FAQS</a>
-                    </div>
+                    &copy; <a href="#">TalentLinker</a>, All Right Reserved. Designed By <a class="border-bottom" href="https://htmlcodex.com">TalentLinker</a>
                 </div>
             </div>
         </div>

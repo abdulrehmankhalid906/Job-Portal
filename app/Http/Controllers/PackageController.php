@@ -35,9 +35,7 @@ class PackageController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
         $data['features'] = json_encode($request->features);
-
         $package = Package::create($data);
 
         //dd($package);
@@ -56,9 +54,12 @@ class PackageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Package $package)
+    public function edit(String $id)
     {
-        //
+        $package = Package::findorFail($id);
+        return view('package.update_package',[
+            'package' => $package
+        ]);
     }
 
     /**
@@ -72,8 +73,11 @@ class PackageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Package $package)
+    public function destroy(Package $package, $id)
     {
-        //
+        $package = Package::findorFail($id);
+        $package->delete();
+
+        return redirect('packages')->with('success','The package has been deleted');
     }
 }

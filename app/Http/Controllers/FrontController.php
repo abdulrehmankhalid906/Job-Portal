@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\JobRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ApplyRequest;
+use App\Models\Package;
 use App\Repositories\CommonRepository;
 
 class FrontController extends Controller
@@ -56,7 +57,8 @@ class FrontController extends Controller
             'cities' => $cities,
             'jobdata' => $jobdata,
             'testimonials' => $testimonials,
-            'total_array' => $total_array
+            'total_array' => $total_array,
+            'packages' => Package::all()
         ]);
 
     }
