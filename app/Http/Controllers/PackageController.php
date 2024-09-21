@@ -26,7 +26,7 @@ class PackageController extends Controller
      */
     public function create()
     {
-        //
+        return view('package.create_package');
     }
 
     /**
@@ -34,7 +34,15 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $data['features'] = json_encode($request->features);
+
+        $package = Package::create($data);
+
+        //dd($package);
+
+        return redirect('packages')->with('success','The package has been created');
     }
 
     /**
