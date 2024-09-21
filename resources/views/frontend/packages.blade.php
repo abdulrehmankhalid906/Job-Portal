@@ -1,4 +1,3 @@
-<h1 class="text-center mt-5">Our Packages</h1>
 <div class="row justify-content-center mt-5">
     @foreach ($packages as $package)
         <div class="col-lg-3 col-md">
@@ -16,7 +15,11 @@
                     <div class="py-4 border-0 pricing-header">
                         <div class="h1 text-center mb-0 color-secondary"><span class="price font-weight-bolder"><small>USD {{ $package->price }}</small></span></div>
                     </div>
-                    <a class="btn btn-primary" href="{{ route('packages.edit', $package->id) }}">Edit Package</a>
+                    {{-- @auth --}}
+                        <a class="btn btn-primary" href="{{ route('packages.edit', $package->id) }}">Edit Package</a>
+                    {{-- @else --}}
+                        <a class="btn btn-success" href="{{ route('packages.edit', $package->id) }}">Buy Package</a>
+                    {{-- @endauth --}}
                 </div>
             </div>
         </div>

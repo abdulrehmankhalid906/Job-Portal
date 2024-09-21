@@ -115,6 +115,7 @@
         
         @include('frontend.overall_rating')
         
+        <h1 class="text-center mt-5">Our Packages</h1>
         @include('frontend.packages')
         
         <!-- Footer Start -->
