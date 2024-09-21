@@ -17,6 +17,7 @@ use App\Http\Controllers\Combine\CountryController;
 use App\Http\Controllers\Combine\CategoryController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\PackageController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -62,6 +63,7 @@ Route::middleware(['auth'])->group(function () {
         'applicants' => ApplicantController::class,
         'testimonials' => TestimonialController::class,
         'jobs' => JobController::class,
+        'packages' => PackageController::class,
         'feedbacks' => FeedbackController::class, 
     ]);
 });

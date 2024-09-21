@@ -21,7 +21,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
-        'password'
+        'password',
+        'package_id'
     ];
 
     /**
@@ -52,6 +53,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function testimonials()
     {
         return $this->hasOne(Testimonial::class);
+    }
+
+    public function package()
+    {
+        return $this->belongsTo(Package::class);
     }
 
 }

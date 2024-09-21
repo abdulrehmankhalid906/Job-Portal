@@ -72,6 +72,12 @@
             </li>
 
             <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('packages.index') }}">
+                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Packages</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('users.index') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">Users</span>
                 </a>
