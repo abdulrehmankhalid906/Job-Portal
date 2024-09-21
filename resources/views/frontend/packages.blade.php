@@ -15,11 +15,15 @@
                     <div class="py-4 border-0 pricing-header">
                         <div class="h1 text-center mb-0 color-secondary"><span class="price font-weight-bolder"><small>USD {{ $package->price }}</small></span></div>
                     </div>
-                    {{-- @auth --}}
-                        <a class="btn btn-primary" href="{{ route('packages.edit', $package->id) }}">Edit Package</a>
-                    {{-- @else --}}
-                        <a class="btn btn-success" href="{{ route('packages.edit', $package->id) }}">Buy Package</a>
-                    {{-- @endauth --}}
+                    <a class="btn btn-primary" href="{{ route('packages.edit', $package->id) }}">Edit Package</a>
+
+                    <form action="{{ route('session') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <input type="hidden" name="package_id" value="{{ $package->id }}">
+                        <input type="hidden" name="package_name" value="{{ $package->name }}">
+                        <input type="hidden" name="package_price" value="{{ $package->price }}">
+                        <input type="submit" class="btn btn-success" value="Buy Package">
+                    </form>
                 </div>
             </div>
         </div>

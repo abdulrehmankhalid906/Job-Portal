@@ -18,6 +18,7 @@ use App\Http\Controllers\Combine\CategoryController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -49,6 +50,11 @@ Route::post('/profile', [DashboardController::class, 'updateCompany'])->name('up
 // Route::get('/retrive-users',[TestApiController::class,'RetriveUserDate']); we can use api even in web.php
 Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');
 Route::post('/assign-permission/{id}', [RoleController::class, 'updateRolePermissions'])->name('role.update.permission');
+
+//Stripe Routes
+Route::post('/session',[StripeController::class,'session'])->name('session');
+Route::get('/success',[StripeController::class,'success'])->name('success');
+
 
 //Some resource
 Route::middleware(['auth'])->group(function () {
