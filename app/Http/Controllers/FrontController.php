@@ -31,25 +31,6 @@ class FrontController extends Controller
         $testimonials = Testimonial::with('company')->get();
         $overall_rating = $this->CommonRepository->feedbackRating();
 
-        $total_array = [
-            'total_rating' => number_format($overall_rating->total_rating / $overall_rating->total_count, 1),
-            'total_count' => $overall_rating->total_count,
-            'ratings' => [
-                '5' => $overall_rating->rat_5,
-                '4' => $overall_rating->rat_4,
-                '3' => $overall_rating->rat_3,
-                '2' => $overall_rating->rat_2,
-                '1' => $overall_rating->rat_1
-            ],
-            'colors' => [
-                '5' => 'bg-success',
-                '4' => 'bg-primary',
-                '3' => 'bg-info',
-                '2' => 'bg-warning',
-                '1' => 'bg-danger'
-            ]
-        ];
-
         $jobdata = Job::with(['applies','companies','countries','cities'])->get();
         return view('welcome',[
             'categories' => $categories,
@@ -57,10 +38,9 @@ class FrontController extends Controller
             'cities' => $cities,
             'jobdata' => $jobdata,
             'testimonials' => $testimonials,
-            'total_array' => $total_array,
+            'total_array' => $overall_rating,
             'packages' => Package::all()
         ]);
-
     }
 
     public function viewJob($id,$slug)

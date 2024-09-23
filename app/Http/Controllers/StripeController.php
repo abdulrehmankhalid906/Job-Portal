@@ -44,10 +44,8 @@ class StripeController extends Controller
     public function success(Request $request)
     {
         $user = User::where('id', Auth::user()->id)->first();
-
-        $user->update([
-            'package_id' => $request->package_id,
-        ]);
+        $user['package_id'] = $request->package_id;
+        $user->save();
         return redirect()->route('packages.index')->with('success', 'You have successfully purchased the package');
     }
 }

@@ -9,7 +9,7 @@
 
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('postJob') }}" method="POST" enctype="multipart/form-data">
+                <form action="" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-4 col-sm-4">

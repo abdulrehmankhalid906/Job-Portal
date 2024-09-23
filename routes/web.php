@@ -1,11 +1,9 @@
 <?php
 
-use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\FrontController;
-use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionController;
@@ -39,6 +37,7 @@ Auth::routes([
 Route::get('/', [FrontController::class, 'frontHome'])->name('frontHome');
 Route::get('viewjobs/{id}/{slug}', [FrontController::class, 'viewJob'])->name('viewJob');
 Route::post('applyjob', [FrontController::class, 'applyjobs'])->name('applyjobs');
+Route::get('/job/category/{category}', [FrontController::class, 'jobCategories'])->name('jobCategories');
 
 
 Route::get('/home', [AdminController::class, 'index'])->name('home')->middleware('verified');
