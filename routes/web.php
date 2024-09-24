@@ -13,7 +13,6 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\Combine\CityController;
 use App\Http\Controllers\Combine\CountryController;
 use App\Http\Controllers\Combine\CategoryController;
-use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\StripeController;
@@ -69,6 +68,5 @@ Route::middleware(['auth'])->group(function () {
         'testimonials' => TestimonialController::class,
         'jobs' => JobController::class,
         'packages' => PackageController::class,
-        'feedbacks' => FeedbackController::class, 
     ]);
 });

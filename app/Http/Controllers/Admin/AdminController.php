@@ -18,7 +18,7 @@ class AdminController extends Controller
         $users = User::count();
 
 
-        return view('admin.index',[
+        return view('dashboard.index',[
             'companies' => $companies,
             'jobs' => $jobs,
             'users' => $users

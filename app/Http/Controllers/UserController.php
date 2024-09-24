@@ -28,7 +28,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::get();
-        return view('users.add',[
+        return view('users.add_user',[
             'roles' => $roles
         ]);
     }
@@ -72,7 +72,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit',[
+        return view('users.edit_user',[
             'user' => $user,
             'roles' => Role::select('name')->get(),
             'selected_role' => $user->roles()->pluck('name')->first(),

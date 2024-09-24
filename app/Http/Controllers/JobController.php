@@ -27,7 +27,7 @@ class JobController extends Controller
     {
         $jobs = Job::with(['companies', 'countries', 'cities'])->where('user_id', Auth::user()->id)->paginate(3);
 
-        return view('company.job_listing',[
+        return view('jobs.jobs',[
             'jobs' => $jobs,
         ]);
     }
@@ -37,7 +37,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('company.post_job', [
+        return view('jobs.add_job', [
             'categories' => Category::get(),
             'countries' => Country::get(),
             'cities' => City::get(),
@@ -87,7 +87,7 @@ class JobController extends Controller
     public function edit($id)
     {
         $job = Job::findorFail($id);
-        return view('company.edit_job', [
+        return view('jobs.edit_job', [
             'categories' => Category::get(),
             'countries' => Country::get(),
             'cities' => City::where('country_id', $job->country_id)->get(),

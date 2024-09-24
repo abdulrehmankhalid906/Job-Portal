@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TestimonialController extends Controller
 {
@@ -15,7 +17,7 @@ class TestimonialController extends Controller
         $testimonial = Testimonial::with('company')->get();
 
 
-        return view('testimonial.testimonial',compact('testimonial'));
+        return view('testimonials.testimonials',compact('testimonial'));
     }
 
     /**
@@ -23,7 +25,11 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        //
+        $user = User::where('id', Auth::user()->id)->with(['company','testimonials'])->first();
+
+        return view('testimonials.add_testomonials',[
+            'user' => $user
+        ]);
     }
 
     /**
@@ -31,7 +37,14 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Testimonial::create([
+            'user_id' => auth()->id(),
+            'company_id' => $request->company_id,
+            'feedback' => $request->feedback,
+            'rating' => $request->rating
+        ]);
+
+        return redirect()->back()->with('success','Thank you for submitting the feedback');
     }
 
     /**

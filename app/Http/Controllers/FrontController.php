@@ -90,5 +90,12 @@ class FrontController extends Controller
     }
 
 
-
+    public function jobCategories($category)
+    {
+        $job = DB::table('jobs')
+        ->join('categories', 'jobs.category_id', "=", 'categories.id')
+        ->select('jobs.*', 'categories.name as category') // Adjust columns as needed
+        ->where('categories.name', '=', $category)
+        ->get();
+    }
 }

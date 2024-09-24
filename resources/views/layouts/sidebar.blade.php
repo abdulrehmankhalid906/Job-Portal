@@ -61,7 +61,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('feedbacks.create') }}">
+                <a class="sidebar-link" href="{{ route('testimonials.create') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">Give Feedback</span>
                 </a>
             </li>
