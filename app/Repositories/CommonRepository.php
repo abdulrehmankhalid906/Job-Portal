@@ -13,26 +13,22 @@ class CommonRepository
     
     public function positions()
     {
-        $positions = ['Junior Level','Middle Level','Senior Level','Expert Level','Specialist Level'];
-        return $positions;
+        return ['Junior Level','Middle Level','Senior Level','Expert Level','Specialist Level'];
     }
 
     public function types()
     {
-        $types = ['Internship','Freelancer','Contract','Permanant','Project Base'];
-        return $types;
+        return ['Internship','Freelancer','Contract','Permanant','Project Base'];
     }
 
     public function range()
     {
-        $ranges = ['20K-30K','50K-80K','150K-300K','350K+'];
-        return $ranges;
+        return ['20K-30K','50K-80K','150K-300K','350K+'];
     }
 
     public function status()
     {
-        $statuses = ['Pending','Approved','Rejected'];
-        return $statuses;
+        return ['Pending','Approved','Rejected'];
     }
 
     public function feedbackRating()
