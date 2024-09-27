@@ -15,6 +15,7 @@ use App\Http\Controllers\Combine\CountryController;
 use App\Http\Controllers\Combine\CategoryController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
 
@@ -68,5 +69,6 @@ Route::middleware(['auth'])->group(function () {
         'testimonials' => TestimonialController::class,
         'jobs' => JobController::class,
         'packages' => PackageController::class,
+        'site' => SiteController::class,
     ]);
 });

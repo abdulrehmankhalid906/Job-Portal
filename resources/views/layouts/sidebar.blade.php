@@ -16,6 +16,13 @@
                 </a>
             </li>
 
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('site.create') }}">
+                    <i class="align-middle" data-feather="sliders"></i> <span
+                        class="align-middle">Site</span>
+                </a>
+            </li>
+
             {{-- <li class="sidebar-header">
                 Module Enhancer
             </li>
