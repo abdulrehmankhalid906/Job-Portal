@@ -9,14 +9,14 @@
                 Pages
             </li>
 
-           <li class="sidebar-item active">
+           <li class="sidebar-item {{ request()->routeIs('home') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('home') }}">
                     <i class="align-middle" data-feather="sliders"></i> <span
                         class="align-middle">Dashboard</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item {{ request()->routeIs('site.create') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('site.create') }}">
                     <i class="align-middle" data-feather="sliders"></i> <span
                         class="align-middle">Site</span>
@@ -27,19 +27,19 @@
                 Module Enhancer
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item {{ request()->routeIs('category.index') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('category.index') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">The Category</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item {{ request()->routeIs('countries.index') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('countries.index') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">The Country</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item {{ request()->routeIs('cities.index') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('cities.index') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">The City</span>
                 </a>
@@ -49,7 +49,7 @@
                 Company Modules
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item {{ request()->routeIs('jobs.create') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('jobs.create') }}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">Post Job</span>
                 </a>

@@ -2,22 +2,23 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SiteController;
+use App\Http\Controllers\UserController;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\PackageController;
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\Combine\CityController;
 use App\Http\Controllers\Combine\CountryController;
 use App\Http\Controllers\Combine\CategoryController;
-use App\Http\Controllers\JobController;
-use App\Http\Controllers\PackageController;
-use App\Http\Controllers\SiteController;
-use App\Http\Controllers\StripeController;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,18 @@ Route::post('/assign-permission/{id}', [RoleController::class, 'updateRolePermis
 //Stripe Routes
 Route::post('/session',[StripeController::class,'session'])->name('session');
 Route::get('/success',[StripeController::class,'success'])->name('success');
+
+
+//github login
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+ 
+    // $user->token
+});
 
 
 //Some resource
