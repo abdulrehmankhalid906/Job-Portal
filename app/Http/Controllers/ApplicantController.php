@@ -19,7 +19,8 @@ class ApplicantController extends Controller
      */
     public function index()
     {
-        $applies = Apply::with('jobs')->where('company_id', Auth::user()->company->id)->get();
+        $user = Auth::user()->company->id ?? null;
+        $applies = Apply::with('jobs')->where('company_id', $user)->get();
 
         return view('company.applicants',[
             'applies' => $applies

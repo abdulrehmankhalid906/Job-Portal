@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 @else
-                    <form action="{{ route('feedbacks.store') }}" method="POST">
+                    <form action="{{ route('testimonials.store') }}" method="POST">
                         @csrf
                         <input type="hidden" value="{{ Auth::user()->id ?? ''}}" readonly>
                         <input type="hidden" name="company_id" value="{{ $user->company->id ?? '' }}" readonly>
