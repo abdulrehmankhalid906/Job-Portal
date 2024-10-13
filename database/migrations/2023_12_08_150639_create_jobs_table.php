@@ -16,10 +16,12 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('company_id')->constrained();
             $table->string('title')->nullable();
+            $table->string('slug');
             $table->longText('description')->nullable();
             $table->foreignId('category_id')->constrained();
             $table->foreignId('country_id')->constrained();
             $table->foreignId('city_id')->constrained();
+            $table->boolean('highlight_post')->default(0);
             $table->string('position_level')->nullable();
             $table->string('job_type')->nullable();
             $table->string('salary_range')->nullable();

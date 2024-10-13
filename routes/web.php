@@ -8,6 +8,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PackageController;
@@ -42,7 +43,7 @@ Route::get('/job/category/{category}', [FrontController::class, 'jobCategories']
 
 
 Route::get('/home', [AdminController::class, 'index'])->name('home')->middleware('verified');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::get('/profile', [DashboardController::class, 'companyProfile'])->name('companyProfile')->middleware('auth');
 Route::post('/profile', [DashboardController::class, 'updateCompany'])->name('updateCompany')->middleware('auth');
 
@@ -56,16 +57,9 @@ Route::post('/session',[StripeController::class,'session'])->name('session');
 Route::get('/success',[StripeController::class,'success'])->name('success');
 
 
-//github login
-Route::get('/auth/redirect', function () {
-    return Socialite::driver('github')->redirect();
-});
-
-Route::get('/auth/callback', function () {
-    $user = Socialite::driver('github')->user();
- 
-    // $user->token
-});
+//gmail login
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('auth/google/call-back', [GoogleController::class, 'handleGoogleCallback']);
 
 
 //Some resource

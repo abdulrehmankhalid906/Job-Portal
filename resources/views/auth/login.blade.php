@@ -64,6 +64,16 @@
                                 @endif
                             </div>
                         </div>
+
+                        <hr>
+
+                        <div class="row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <a href="{{ route('google.login') }}" class="btn btn-primary">
+                                    {{ __('Login with Google') }}
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

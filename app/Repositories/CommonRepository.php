@@ -45,7 +45,9 @@ class CommonRepository
             )->first();
 
         $total_array = [
-            'total_rating' => number_format($data->total_rating / $data->total_count, 1),
+            'total_rating' => $data->total_rating,
+            'total_rating_count' => $data->total_count,
+            'total_rating_avg' => $data->total_count == 0 ? 0 : number_format($data->total_rating / $data->total_count, 1),
             'total_count' => $data->total_count,
             'ratings' => [
                 '5' => $data->rat_5,
