@@ -16,6 +16,7 @@
             <div class="card-body">
                 <form action="{{ route('packages.update', $package->id) }}" method="POST" autocomplete="off">
                     @csrf
+                    @method('PATCH')
                     <div class="row g-3">
                         <div class="col-6 col-sm-4">
                             <label for="">Name</label>
@@ -50,17 +51,22 @@
                             @enderror
                         </div>
 
+                        @php
+                            $features = json_decode($package->features);
+                        @endphp
+
                         <div class="col-12">
                             <label for="">Description</label>
-                            <select class="form-select" multiple aria-label="multiple select example"  name="features[]" id="features">
+                            <select class="form-select" multiple aria-label="multiple select example" name="features[]" id="features">
                                 <option value="">Open this select menu</option>
-                                <option value="Manage Profile / Dashborad">Manage Profile / Dashborad</option>
-                                <option value="My Products">My Products</option>
-                                <option value="My Inquiries">My Inquiries</option>
-                                <option value="My Bookings">My Bookings</option>
-                                <option value="Micro Page">Micro Page</option>
-                                <option value="B2B Marketplace (Buyer)">B2B Marketplace (Buyer)</option>
-                            </select>                            
+                                <option value="Manage Profile / Dashboard" {{ is_array($features) && in_array('Manage Profile / Dashboard', $features) ? 'selected' : '' }}>Manage Profile / Dashboard</option>
+                                <option value="My Products" {{ is_array($features) && in_array('My Products', $features) ? 'selected' : '' }}>My Products</option>
+                                <option value="My Inquiries" {{ is_array($features) && in_array('My Inquiries', $features) ? 'selected' : '' }}>My Inquiries</option>
+                                <option value="My Bookings" {{ is_array($features) && in_array('My Bookings', $features) ? 'selected' : '' }}>My Bookings</option>
+                                <option value="Micro Page" {{ is_array($features) && in_array('Micro Page', $features) ? 'selected' : '' }}>Micro Page</option>
+                                <option value="B2B Marketplace (Buyer)" {{ is_array($features) && in_array('B2B Marketplace (Buyer)', $features) ? 'selected' : '' }}>B2B Marketplace (Buyer)</option>
+                            </select>
+
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

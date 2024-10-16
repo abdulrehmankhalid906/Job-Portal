@@ -5,7 +5,7 @@
                 <h2 class="mb-2">{{ $package->name }}</h2>
                 <div class="card-body p-0">
                     @php
-                        $package_decode = json_decode($package->features);
+                        $package_decode = json_decode($package->features) ?? [];
                     @endphp
                     <ul class="list-unstyled text-md pricing-feature-list">
                         @foreach ($package_decode as $detail)

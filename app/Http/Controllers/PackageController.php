@@ -57,6 +57,8 @@ class PackageController extends Controller
     public function edit(String $id)
     {
         $package = Package::findorFail($id);
+
+        // dd($package);
         return view('package.update_package',[
             'package' => $package
         ]);
@@ -65,9 +67,15 @@ class PackageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Package $package)
+    public function update(Request $request, $id)
     {
-        //
+        $package = Package::findOrFail($id);
+
+        $data = $request->all();
+        $data['features'] = json_encode($request->features);
+        $package->update($data);
+
+        return redirect('packages')->with('success','Package updated successfully.');        
     }
 
     /**
