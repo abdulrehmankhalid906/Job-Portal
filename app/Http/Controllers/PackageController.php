@@ -14,6 +14,8 @@ class PackageController extends Controller
      */
     public function index()
     {
+        validate_user_permission('Manage Packages');
+
         $packages = Package::all();
 
         return view('package.packages',[
@@ -26,6 +28,8 @@ class PackageController extends Controller
      */
     public function create()
     {
+        validate_user_permission('Manage Packages');
+
         return view('package.create_package');
     }
 
@@ -56,6 +60,8 @@ class PackageController extends Controller
      */
     public function edit(String $id)
     {
+        validate_user_permission('Manage Packages');
+
         $package = Package::findorFail($id);
 
         // dd($package);

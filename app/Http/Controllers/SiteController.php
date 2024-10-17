@@ -20,6 +20,7 @@ class SiteController extends Controller
      */
     public function create()
     {
+        validate_user_permission('Manage Site');
         return view('site.set_site',[
             'site' => Site::first()
         ]);

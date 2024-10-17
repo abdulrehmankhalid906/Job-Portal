@@ -19,6 +19,8 @@ class ApplicantController extends Controller
      */
     public function index()
     {
+        validate_user_permission('Manage Jobs');
+
         $user = Auth::user()->company->id ?? null;
         $applies = Apply::with('jobs')->where('company_id', $user)->get();
 
@@ -56,6 +58,8 @@ class ApplicantController extends Controller
      */
     public function edit(string $id)
     {
+        validate_user_permission('Manage Jobs');
+
         $apply = Apply::with('jobs')->where('id', $id)->first();
         
         return view('company.review_job',[

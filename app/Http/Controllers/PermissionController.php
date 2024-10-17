@@ -12,6 +12,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
+        validate_user_permission('Manage Permissions');
         $permissions = Permission::all();
         return view('permissions.permissions',[
             'permissions' => $permissions
@@ -23,6 +24,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
+        validate_user_permission('Manage Permissions');
         return view('permissions.add_permissions');
     }
 
@@ -57,6 +59,8 @@ class PermissionController extends Controller
      */
     public function edit(string $id)
     {
+        validate_user_permission('Manage Permissions');
+
         $permissions = Permission::find($id);
         return view('permissions.edit_permissions', [
             'permissions' => $permissions

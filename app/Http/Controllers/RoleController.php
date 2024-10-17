@@ -13,6 +13,7 @@ class RoleController extends Controller
      */
     public function index()
     {
+        validate_user_permission('Manage Roles');
         $roles = Role::with('permissions')->get();
 
         
@@ -31,6 +32,8 @@ class RoleController extends Controller
      */
     public function create()
     {
+        validate_user_permission('Manage Roles');
+
         return view('roles.add_roles');
     }
 
@@ -65,6 +68,8 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
+        validate_user_permission('Manage Roles');
+
         $roles = Role::find($id);
         return view('roles.edit_roles', [
             'roles' => $roles

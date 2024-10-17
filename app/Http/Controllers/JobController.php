@@ -25,6 +25,8 @@ class JobController extends Controller
      */
     public function index()
     {
+        validate_user_permission('Manage Jobs');
+
         $jobs = Job::with(['companies', 'countries', 'cities'])->where('user_id', Auth::user()->id)->paginate(3);
 
         return view('jobs.jobs',[
@@ -37,6 +39,7 @@ class JobController extends Controller
      */
     public function create()
     {
+        validate_user_permission('Manage Jobs');
         return view('jobs.add_job', [
             'categories' => Category::get(),
             'countries' => Country::get(),
@@ -86,6 +89,8 @@ class JobController extends Controller
      */
     public function edit($id)
     {
+        validate_user_permission('Manage Jobs');
+
         $job = Job::findorFail($id);
         return view('jobs.edit_job', [
             'categories' => Category::get(),

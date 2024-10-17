@@ -1,16 +1,20 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card-header">
-            <h4 class="card-title mb-0 flex-grow-1">Edit User</h4>
-            <div class="flex-shrink-0">
+<main class="content">
+    <div class="container-fluid p-0">
+        <div class="row mb-xl-0">
+            <div class="col-auto d-none d-sm-block">
+                <h3><strong>Edit</strong> Users</h3>
+            </div>
+
+            <div class="col-auto ms-auto text-end mt-n1">
                 <a href="{{ route('users.index') }}" class="btn btn-success btn-label btn-sm">
                     <i class="ri-add-fill label-icon align-middle fs-16 me-2"></i> All User
                 </a>
             </div>
         </div>
+        
 
         <div class="card">
             <div class="card-body">
@@ -46,5 +50,5 @@
             </div>
         </div>
     </div>
-</div>
+</main>
 @endsection

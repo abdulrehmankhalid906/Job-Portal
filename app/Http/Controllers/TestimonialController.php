@@ -14,6 +14,8 @@ class TestimonialController extends Controller
      */
     public function index()
     {
+        validate_user_permission('Manage Feedback');
+
         $testimonial = Testimonial::with('company')->get();
 
 
@@ -25,6 +27,8 @@ class TestimonialController extends Controller
      */
     public function create()
     {
+        validate_user_permission('Manage Feedback');
+
         $user = User::where('id', Auth::user()->id)->with(['company','testimonials'])->first();
 
         return view('testimonials.add_testomonials',[

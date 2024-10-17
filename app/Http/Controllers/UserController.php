@@ -15,6 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        validate_user_permission('Manage Users');
         $users = User::with('roles')->get();
 
         // dd($users);
@@ -28,6 +29,8 @@ class UserController extends Controller
      */
     public function create()
     {
+        validate_user_permission('Manage Users');
+
         $roles = Role::get();
         return view('users.add_user',[
             'roles' => $roles
@@ -73,6 +76,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        validate_user_permission('Manage Users');
+
         return view('users.edit_user',[
             'user' => $user,
             'roles' => Role::select('name')->get(),

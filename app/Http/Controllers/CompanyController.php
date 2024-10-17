@@ -12,6 +12,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
+        validate_user_permission('Manage Companies');
+
         $companies = Company::with('users')->get();
         return view('companies.companies',[
             'companies' => $companies
