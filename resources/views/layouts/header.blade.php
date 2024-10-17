@@ -23,6 +23,8 @@
                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                     @if (Auth::user()->profile_photo_path)
                         <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" class="avatar img fluid rounded me-1" />
+                    @else
+                        <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" class="avatar img fluid rounded me-1" />
                     @endif
                     <span class="text-dark">{{ Auth::user()->name }}</span>
                 </a>
@@ -33,7 +35,7 @@
                     <div class="dropdown-divider"></div>
 
                     <a class="dropdown-item" href="index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-                    <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
+                    <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i>Chat Support</a>
 
                     <div class="dropdown-divider"></div>
 

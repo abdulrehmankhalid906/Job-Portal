@@ -12,10 +12,10 @@
 
     <title>Admin Dashboard</title>
 
-    <link href="{{ asset('admin/assets/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/assets/css/light.css') }}" rel="stylesheet">
+    <script src="{{ asset('admin/assets/js/settings.js') }}"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.datatables.net/fixedcolumns/4.2.1/css/fixedColumns.dataTables.min.css" rel="stylesheet" type="text/css" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
@@ -33,9 +33,7 @@
     </div>
 
     <script src="{{ asset('admin/assets/js/app.js') }}"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/fixedcolumns/4.2.1/js/dataTables.fixedColumns.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
             $('#country_id').change(function(){

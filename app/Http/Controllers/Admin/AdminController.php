@@ -17,8 +17,7 @@ class AdminController extends Controller
         return view('dashboard.index',[
             'companies' => Company::count(),
             'jobs' => Job::count(),
-            'users' => User::count(),
-            'site' => Site::first()
+            'users' => User::count()
         ]);
     }
 }

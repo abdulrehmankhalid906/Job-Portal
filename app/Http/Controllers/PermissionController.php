@@ -92,4 +92,9 @@ class PermissionController extends Controller
 
         return redirect('permissions')->with('success','Permission Deleted Successfully!');
     }
+
+    public function addbulkPermissions(Request $request)
+    {
+        dd($request->all());
+    }
 }
