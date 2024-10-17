@@ -11,13 +11,6 @@
                     <a class="text-muted" href="javascript:void(0);"><strong>AdminKit </strong></a> &copy;
                 </p>
             </div>
-            <div class="col-6 text-end">
-                <ul class="list-inline">
-                    <li class="list-inline-item">
-                        <a class="text-muted" href="javascript:void(0);">Terms & Conditions</a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
 </footer>
