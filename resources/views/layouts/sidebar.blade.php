@@ -1,7 +1,12 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" href="{{ route('home') }}">
-            <span class="align-middle">AdminKit</span>
+            <div class="text-center">
+                @if (!empty($site) && !empty($site->backend_logo))
+                    <img src="{{ asset('storage/images/' . $site->backend_logo) }}" alt="{{ $site->title ?? '' }}" class="img-fluid rounded" style="max-width: 60px;">
+                @endif
+                <span class="align-item-center">{{ $site->title ?? 'TLinker' }}</span>
+            </div>
         </a>
 
         <ul class="sidebar-nav">

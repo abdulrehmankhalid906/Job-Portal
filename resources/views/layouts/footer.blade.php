@@ -8,7 +8,7 @@
         <div class="row text-muted">
             <div class="col-6 text-start">
                 <p class="mb-0">
-                    <a class="text-muted" href="javascript:void(0);"><strong>AdminKit </strong></a> &copy;
+                    <a class="text-muted" href="{{ $site->base_url .'/home' ?? '' }}"><strong>{{ $site->title ?? 'TLinker' }} </strong></a> &copy;
                 </p>
             </div>
         </div>

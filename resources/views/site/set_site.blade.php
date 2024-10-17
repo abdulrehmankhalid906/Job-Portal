@@ -11,7 +11,7 @@
             <div class="card-body">
                 <form action="{{ route('site.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                     @csrf
-                    <input type="text" name="id" value="{{ $site->id ?? 0 }}">
+                    <input type="hidden" name="id" value="{{ $site->id ?? 0 }}">
 
                     <div class="row g-3">
                         <div class="col-lg-6 col-sm-12">
@@ -24,10 +24,9 @@
                             @enderror
                             
                             
-
-                            <div class="text-center">
+                            <div class="text-center mt-5">
                                 @if (!empty($site) && !empty($site->backend_logo))
-                                    <img src="{{ asset('storage/images/' . $site->backend_logo) }}" alt="Image" class="img-fluid mt-2 rounded" style="max-width: 150px;">
+                                    <img src="{{ asset('storage/images/' . $site->backend_logo) }}" alt="{{ $site->title ?? '' }}" class="img-fluid rounded" style="max-width: 150px;">
                                 @endif
                             </div>
                         </div>

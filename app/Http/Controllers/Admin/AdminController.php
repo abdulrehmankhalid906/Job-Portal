@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Job;
+use App\Models\Site;
 use App\Models\User;
 use App\Models\Company;
 use Illuminate\Http\Request;
@@ -13,15 +14,11 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $companies = Company::count();
-        $jobs = Job::count();
-        $users = User::count();
-
-
         return view('dashboard.index',[
-            'companies' => $companies,
-            'jobs' => $jobs,
-            'users' => $users
+            'companies' => Company::count(),
+            'jobs' => Job::count(),
+            'users' => User::count(),
+            'site' => Site::first()
         ]);
     }
 }
