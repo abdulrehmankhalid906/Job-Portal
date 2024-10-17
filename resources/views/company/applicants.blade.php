@@ -1,10 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card-header align-items-center d-flex">
-            <h4 class="card-title mb-0 flex-grow-1">Applicants</h4>
+<main class="content">
+    <div class="container-fluid p-0">
+        <div class="row mb-xl-0">
+            <div class="col-auto d-none d-sm-block">
+                <h3><strong>All</strong> Applicants</h3>
+            </div>
         </div>
 
         {{-- <div class="card">
@@ -70,6 +72,6 @@
             </div>
         </div>
     </div>
-</div>
+</main>
 {{-- <input id="ajaxRoute" value="{{ route('landmarks.index') }}" hidden /> --}}
 @endsection

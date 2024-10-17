@@ -1,11 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card-header align-items-center d-flex">
-            <h4 class="card-title mb-0 flex-grow-1">Testimonials</h4>
-            <div class="flex-shrink-0">
+<main class="content">
+    <div class="container-fluid p-0">
+        <div class="row mb-xl-0">
+            <div class="col-auto d-none d-sm-block">
+                <h3><strong>Testimonials</strong> Listing</h3>
+            </div>
+
+            <div class="col-auto ms-auto text-end mt-n1">
                 <a href="{{ route('testimonials.index') }}" class="btn btn-success btn-label btn-sm">
                     <i class="ri-add-fill label-icon align-middle fs-16 me-2"></i> Add New(CLOSED)
                 </a>
@@ -41,7 +44,7 @@
             </div>
         </div>
     </div>
-</div>
+</main>
 {{-- <input id="ajaxRoute" value="{{ route('landmarks.index') }}" hidden /> --}}
 @endsection
 

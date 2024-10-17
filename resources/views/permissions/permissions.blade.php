@@ -1,11 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card-header align-items-center d-flex">
-            <h4 class="card-title mb-0 flex-grow-1">Permissions</h4>
-            <div class="flex-shrink-0">
+<main class="content">
+    <div class="container-fluid p-0">
+        <div class="row mb-xl-0">
+            <div class="col-auto d-none d-sm-block">
+                <h3><strong>All</strong> Permissions</h3>
+            </div>
+
+            <div class="col-auto ms-auto text-end mt-n1">
                 <a href="{{ route('permissions.create') }}" class="btn btn-success btn-label btn-sm">
                     <i class="ri-add-fill label-icon align-middle fs-16 me-2"></i> Add New Permission
                 </a>
@@ -17,7 +20,7 @@
 
         <div class="card">
             <div class="card-body">
-                <table id="landmarks-data-table" class="table table-bordered table-striped align-middle table-nowrap mb-0" style="width:100%">
+                <table id="datatables-reponsive" class="table table-bordered table-striped align-middle table-nowrap mb-0" style="width:100%">
                     <thead>
                         <tr>
                             <th>ID(s)</th>
@@ -47,25 +50,5 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+</main>
 @endsection

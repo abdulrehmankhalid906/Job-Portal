@@ -13,7 +13,7 @@
     <title>Admin Dashboard</title>
 
     <link href="{{ asset('admin/assets/css/light.css') }}" rel="stylesheet">
-    <script src="{{ asset('admin/assets/js/settings.js') }}"></script>
+    {{-- <script src="{{ asset('admin/assets/js/settings.js') }}"></script> --}}
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>

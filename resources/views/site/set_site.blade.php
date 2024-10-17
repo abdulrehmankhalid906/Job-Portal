@@ -1,10 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card-header align-items-center d-flex">
-            <h4 class="card-title mb-0 flex-grow-1">Set Site</h4>
+<main class="content">
+    <div class="container-fluid p-0">
+        <div class="row mb-xl-0">
+            <div class="col-auto d-none d-sm-block">
+                <h3><strong>Set</strong> Site</h3>
+            </div>
         </div>
 
         <div class="card">
@@ -134,6 +136,6 @@
             </div>
         </div>
     </div>
-</div>
+</main>
 @endsection
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
