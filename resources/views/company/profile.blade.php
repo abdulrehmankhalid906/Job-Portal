@@ -1,10 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card-header align-items-center d-flex">
-            <h4 class="card-title mb-0 flex-grow-1">General Profile</h4>
+<main class="content">
+    <div class="container-fluid p-0">
+        <div class="row mb-xl-0">
+            <div class="col-auto d-none d-sm-block">
+                <h3><strong>Setup</strong> Profile</h3>
+            </div>
         </div>
 
         <div class="card">
@@ -49,74 +51,66 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card-header align-items-center d-flex">
-            <h4 class="card-title mb-0 flex-grow-1">Company Profile</h4>
-        </div>
-
-        <div class="card">
-            <div class="card-body">
-                <form action="{{ route('updateCompany') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <div class="col-3 col-sm-3">
-                            <label for="">Company Name</label>
-                            <input type="text" class="form-control" name="company_name" id="company_name" value="{{ $users->company->company_name ?? '' }}">
-                        </div>
-
-                        <div class="col-3 col-sm-3">
-                            <label for="">Founded Date</label>
-                            <input type="date" class="form-control" name="founded_date" id="founded_date" value="{{ $users->company->founded_date ?? '' }}">
-                        </div>
-
-                        <div class="col-3 col-sm-3">
-                            <label for="">Total Employees</label>
-                            <input type="text" class="form-control" name="employees_no" id="employees_no" value="{{ $users->company->employees_no ?? '' }}">
-                        </div>
-
-                        <div class="col-3 col-sm-3">
-                            <label for="">Company Type</label>
-                            <input type="text" class="form-control" name="company_type" id="company_type" value="{{ $users->company->company_type ?? '' }}">
-                        </div>
+    <div class="card">
+        <div class="card-body">
+            <form action="{{ route('updateCompany') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <div class="col-3 col-sm-3">
+                        <label for="">Company Name</label>
+                        <input type="text" class="form-control" name="company_name" id="company_name" value="{{ $users->company->company_name ?? '' }}">
                     </div>
 
-                    <div class="row">
-                        <div class="col-3 col-sm-3">
-                            <label for="">Company Country</label>
-                            <select class="form-select form-control" id="country_id" name="country_id">
-                                <option value="">Select One</option>
-                                @foreach ($countries as $country)
-                                    <option value="{{ $country->id }}">{{ $country->name }} - {{ $country->shortcode }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-    
-                        <div class="col-3 col-sm-3">
-                            <label for="">Company City</label>
-                            <select class="form-select form-control" id="city_id" name="city_id">
-                                <option value="">Select One</option>
-                            </select>
-                        </div>
-
-                        <div class="col-3 col-sm-3">
-                            <label for="">Company Image</label>
-                            <input type="file" class="form-control" name="company_img" id="company_img">
-                        </div>
+                    <div class="col-3 col-sm-3">
+                        <label for="">Founded Date</label>
+                        <input type="date" class="form-control" name="founded_date" id="founded_date" value="{{ $users->company->founded_date ?? '' }}">
                     </div>
 
-                    <div class="row mt-3">
-                        <div class="col-3">
-                            <button class="btn btn-primary" type="submit">Update</button>
-                        </div>
+                    <div class="col-3 col-sm-3">
+                        <label for="">Total Employees</label>
+                        <input type="text" class="form-control" name="employees_no" id="employees_no" value="{{ $users->company->employees_no ?? '' }}">
                     </div>
-                </form>
-            </div>
+
+                    <div class="col-3 col-sm-3">
+                        <label for="">Company Type</label>
+                        <input type="text" class="form-control" name="company_type" id="company_type" value="{{ $users->company->company_type ?? '' }}">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3 col-sm-3">
+                        <label for="">Company Country</label>
+                        <select class="form-select form-control" id="country_id" name="country_id">
+                            <option value="">Select One</option>
+                            @foreach ($countries as $country)
+                                <option value="{{ $country->id }}">{{ $country->name }} - {{ $country->shortcode }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-3 col-sm-3">
+                        <label for="">Company City</label>
+                        <select class="form-select form-control" id="city_id" name="city_id">
+                            <option value="">Select One</option>
+                        </select>
+                    </div>
+
+                    <div class="col-3 col-sm-3">
+                        <label for="">Company Image</label>
+                        <input type="file" class="form-control" name="company_img" id="company_img">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-3">
+                        <button class="btn btn-primary" type="submit">Update</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-</div>
+</main>
 {{-- <input id="ajaxRoute" value="{{ route('landmarks.index') }}" hidden /> --}}
 @endsection
 
