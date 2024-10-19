@@ -7,12 +7,6 @@
             <div class="col-auto d-none d-sm-block">
                 <h3><strong>All</strong> Companies</h3>
             </div>
-
-            <div class="col-auto ms-auto text-end mt-n1">
-                <a href="{{ route('companies.create') }}" class="btn btn-success btn-label btn-sm">
-                    <i class="ri-add-fill label-icon align-middle fs-16 me-2"></i> Add New
-                </a>
-            </div>
         </div>
 
         {{-- <div class="card">
@@ -62,8 +56,8 @@
                                 <td>{{ $company->company_type ?? 'N.A' }}</td>
                                 <td>{{ $company->created_at }}</td>
                                 <td>
-                                    <a href="{{ route('applicants.edit', $company->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></a>
-                                    <form action="{{ route('applicants.destroy', $company->id) }}" method="POST" style="display: inline-block;">
+                                    <a href="{{ route('companies.edit', $company->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil"></i></a>
+                                    <form action="{{ route('companies.destroy', $company->id) }}" method="POST" style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
@@ -77,7 +71,4 @@
         </div>
     </div>
 </main>
-{{-- <input id="ajaxRoute" value="{{ route('landmarks.index') }}" hidden /> --}}
 @endsection
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

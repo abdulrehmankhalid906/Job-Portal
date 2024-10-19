@@ -27,7 +27,7 @@ class JobController extends Controller
     {
         validate_user_permission('Manage Jobs');
 
-        $jobs = Job::with(['companies', 'countries', 'cities'])->where('user_id', Auth::user()->id)->paginate(3);
+        $jobs = Job::with(['companies', 'countries', 'cities'])->where('user_id', Auth::user()->id)->paginate(4);
 
         return view('jobs.jobs',[
             'jobs' => $jobs,

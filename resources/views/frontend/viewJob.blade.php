@@ -49,25 +49,7 @@
 
                         <div class="mb-5">
                             <h4 class="mb-3">Job description</h4>
-                            <p>{{ $job->description }}</p>
-                            <h4 class="mb-3">Responsibility</h4>
-                            <p>Magna et elitr diam sed lorem. Diam diam stet erat no est est. Accusam sed lorem stet voluptua sit sit at stet consetetur, takimata at diam kasd gubergren elitr dolor</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Dolor justo tempor duo ipsum accusam</li>
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Elitr stet dolor vero clita labore gubergren</li>
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Rebum vero dolores dolores elitr</li>
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Est voluptua et sanctus at sanctus erat</li>
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Diam diam stet erat no est est</li>
-                            </ul>
-                            <h4 class="mb-3">Qualifications</h4>
-                            <p>Magna et elitr diam sed lorem. Diam diam stet erat no est est. Accusam sed lorem stet voluptua sit sit at stet consetetur, takimata at diam kasd gubergren elitr dolor</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Dolor justo tempor duo ipsum accusam</li>
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Elitr stet dolor vero clita labore gubergren</li>
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Rebum vero dolores dolores elitr</li>
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Est voluptua et sanctus at sanctus erat</li>
-                                <li><i class="fa fa-angle-right text-primary me-2"></i>Diam diam stet erat no est est</li>
-                            </ul>
+                            <p>{!! html_entity_decode($job->description) !!}</p>
                         </div>
 
                         <div class="">
@@ -101,7 +83,7 @@
                     </div>
 
                     <div class="col-lg-4">
-                        <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
+                        <div class="bg-light rounded p-5 mb-4">
                             <h4 class="mb-4">Job Summery</h4>
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Published: {{ $job->created_at->format('d-m-y') }}</p>
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Vacancy: 00</p>
@@ -110,7 +92,7 @@
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Location: {{ $job->cities->name }},{{ $job->countries->name }}</p>
                             <p class="m-0"><i class="fa fa-angle-right text-primary me-2"></i>Date Line: {{ $job->valid_till }}</p>
                         </div>
-                        <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
+                        <div class="bg-light rounded p-5">
                             <h4 class="mb-4">Company Detail</h4>
                             <p class="m-0">{{ $job->companies->company_name }}</p>
                             <div class="card">

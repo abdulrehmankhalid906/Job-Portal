@@ -152,7 +152,7 @@
                         </div>
 
                         <div class="col-12">
-                            <textarea class="form-control @error('description') is-invalid @enderror" rows="10" cols="15" placeholder="Roles & Responsibilites" name="description" id="description"></textarea>
+                            <textarea class="form-control @error('description') is-invalid @enderror" placeholder="Roles & Responsibilites" name="description" id="description"></textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -169,7 +169,12 @@
         </div>
     </div>
 </main>
-{{-- <input id="ajaxRoute" value="{{ route('landmarks.index') }}" hidden /> --}}
 @endsection
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jodit/3.1.39/jodit.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var editor = new Jodit("#description");
+    });
+ </script>
