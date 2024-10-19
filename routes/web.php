@@ -41,29 +41,26 @@ Route::get('viewjobs/{id}/{slug}', [FrontController::class, 'viewJob'])->name('v
 Route::post('applyjob', [FrontController::class, 'applyjobs'])->name('applyjobs');
 Route::get('/job/category/{category}', [FrontController::class, 'jobCategories'])->name('jobCategories');
 
-
-Route::get('/home', [AdminController::class, 'index'])->name('home')->middleware('verified');
-// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
-Route::get('/profile', [DashboardController::class, 'companyProfile'])->name('companyProfile')->middleware('auth');
-Route::post('/profile', [DashboardController::class, 'updateCompany'])->name('updateCompany')->middleware('auth');
-
-
-// Route::get('/retrive-users',[TestApiController::class,'RetriveUserDate']); we can use api even in web.php
-Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');
-Route::post('/assign-permission/{id}', [RoleController::class, 'updateRolePermissions'])->name('role.update.permission');
-
-//Stripe Routes
-Route::post('/session',[StripeController::class,'session'])->name('session');
-Route::get('/success',[StripeController::class,'success'])->name('success');
-
-
 //gmail login
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/call-back', [GoogleController::class, 'handleGoogleCallback']);
 
+Route::middleware(['auth','verified'])->group(function () {
 
-//Some resource
-Route::middleware(['auth'])->group(function () {
+    //Dashboard
+    Route::get('/home', [AdminController::class, 'index'])->name('home');
+    //Profile
+    Route::get('/profile', [DashboardController::class, 'companyProfile'])->name('companyProfile');
+    Route::post('/profile', [DashboardController::class, 'updateCompany'])->name('updateCompany');
+
+    //Role and Permission
+    Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');
+    Route::post('/assign-permission/{id}', [RoleController::class, 'updateRolePermissions'])->name('role.update.permission');
+
+    //Stripe
+    Route::post('/session',[StripeController::class,'session'])->name('session');
+    Route::get('/success',[StripeController::class,'success'])->name('success');
+
     Route::resources([
         'users' => UserController::class,
         'roles' => RoleController::class,

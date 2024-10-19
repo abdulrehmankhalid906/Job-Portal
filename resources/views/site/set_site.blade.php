@@ -9,11 +9,19 @@
             </div>
         </div>
 
+        {{-- {{ dd($site) }} --}}
         <div class="card">
             <div class="card-body">
                 <form action="{{ route('site.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                     @csrf
                     <input type="hidden" name="id" value="{{ $site->id ?? 0 }}">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="mb-2 text-center">
+                               <small class="text-muted">Updated By: {{ $site->updatedBy->name ?? '' }} - {{ $site->updated_at->diffForHumans() ?? '' }}</small>
+                            </h4>
+                        </div>
+                    </div>
 
                     <div class="row g-3">
                         <div class="col-lg-6 col-sm-12">

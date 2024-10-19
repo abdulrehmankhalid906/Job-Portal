@@ -21,9 +21,9 @@ class SiteController extends Controller
     public function create()
     {
         validate_user_permission('Manage Site');
-        return view('site.set_site',[
-            'site' => Site::first()
-        ]);
+        
+        $site = Site::with('updatedBy')->get();
+        return view('site.set_site',compact('site'));
     }
 
     /**
@@ -38,7 +38,7 @@ class SiteController extends Controller
             $data = $request->all();
             $data['contacts'] = json_encode($request->contacts);
             $data['socials_links'] = json_encode($request->socials_links);
-            $date['updated_by'] = auth()->user()->id;
+            $data['updated_by'] = auth()->user()->id;
 
             if ($request->hasFile('backend_logo')) {
                 $co_img = $request->file('backend_logo');
@@ -56,7 +56,7 @@ class SiteController extends Controller
             $data = $request->all();
             $data['contacts'] = json_encode($request->contacts);
             $data['socials_links'] = json_encode($request->socials_links);
-            $date['updated_by'] = auth()->user()->id;
+            $data['updated_by'] = auth()->user()->id;
     
             if ($request->hasFile('backend_logo')) {
                 $co_img = $request->file('backend_logo');

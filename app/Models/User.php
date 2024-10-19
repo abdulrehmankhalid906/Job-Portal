@@ -62,4 +62,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Package::class);
     }
 
+    public function site()
+    {
+        return $this->hasOne(Site::class);
+    }
+
 }
