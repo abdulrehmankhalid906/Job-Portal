@@ -52,66 +52,67 @@
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-body">
-            <form action="{{ route('updateCompany') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="row">
-                    <div class="col-3 col-sm-3">
-                        <label for="">Company Name</label>
-                        <input type="text" class="form-control" name="company_name" id="company_name" value="{{ $users->company->company_name ?? '' }}">
+    @if (auth()->user()->hasRole('Company'))
+        <div class="card">
+            <div class="card-body">
+                <form action="{{ route('updateCompany') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-3 col-sm-3">
+                            <label for="">Company Name</label>
+                            <input type="text" class="form-control" name="company_name" id="company_name" value="{{ $users->company->company_name ?? '' }}">
+                        </div>
+
+                        <div class="col-3 col-sm-3">
+                            <label for="">Founded Date</label>
+                            <input type="date" class="form-control" name="founded_date" id="founded_date" value="{{ $users->company->founded_date ?? '' }}">
+                        </div>
+
+                        <div class="col-3 col-sm-3">
+                            <label for="">Total Employees</label>
+                            <input type="text" class="form-control" name="employees_no" id="employees_no" value="{{ $users->company->employees_no ?? '' }}">
+                        </div>
+
+                        <div class="col-3 col-sm-3">
+                            <label for="">Company Type</label>
+                            <input type="text" class="form-control" name="company_type" id="company_type" value="{{ $users->company->company_type ?? '' }}">
+                        </div>
                     </div>
 
-                    <div class="col-3 col-sm-3">
-                        <label for="">Founded Date</label>
-                        <input type="date" class="form-control" name="founded_date" id="founded_date" value="{{ $users->company->founded_date ?? '' }}">
+                    <div class="row">
+                        <div class="col-3 col-sm-3">
+                            <label for="">Company Country</label>
+                            <select class="form-select form-control" id="country_id" name="country_id">
+                                <option value="">Select One</option>
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->id }}">{{ $country->name }} - {{ $country->shortcode }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-3 col-sm-3">
+                            <label for="">Company City</label>
+                            <select class="form-select form-control" id="city_id" name="city_id">
+                                <option value="">Select One</option>
+                            </select>
+                        </div>
+
+                        <div class="col-3 col-sm-3">
+                            <label for="">Company Image</label>
+                            <input type="file" class="form-control" name="company_img" id="company_img">
+                        </div>
                     </div>
 
-                    <div class="col-3 col-sm-3">
-                        <label for="">Total Employees</label>
-                        <input type="text" class="form-control" name="employees_no" id="employees_no" value="{{ $users->company->employees_no ?? '' }}">
+                    <div class="row mt-3">
+                        <div class="col-3">
+                            <button class="btn btn-primary" type="submit">Update</button>
+                        </div>
                     </div>
-
-                    <div class="col-3 col-sm-3">
-                        <label for="">Company Type</label>
-                        <input type="text" class="form-control" name="company_type" id="company_type" value="{{ $users->company->company_type ?? '' }}">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-3 col-sm-3">
-                        <label for="">Company Country</label>
-                        <select class="form-select form-control" id="country_id" name="country_id">
-                            <option value="">Select One</option>
-                            @foreach ($countries as $country)
-                                <option value="{{ $country->id }}">{{ $country->name }} - {{ $country->shortcode }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-3 col-sm-3">
-                        <label for="">Company City</label>
-                        <select class="form-select form-control" id="city_id" name="city_id">
-                            <option value="">Select One</option>
-                        </select>
-                    </div>
-
-                    <div class="col-3 col-sm-3">
-                        <label for="">Company Image</label>
-                        <input type="file" class="form-control" name="company_img" id="company_img">
-                    </div>
-                </div>
-
-                <div class="row mt-3">
-                    <div class="col-3">
-                        <button class="btn btn-primary" type="submit">Update</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
+    @endif
 </main>
-{{-- <input id="ajaxRoute" value="{{ route('landmarks.index') }}" hidden /> --}}
 @endsection
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

@@ -30,7 +30,9 @@ class PackageController extends Controller
     {
         validate_user_permission('Manage Packages');
 
-        return view('package.create_package');
+        return view('package.create_package',[
+            'packages' => packages()
+        ]);
     }
 
     /**

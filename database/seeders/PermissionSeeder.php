@@ -15,7 +15,7 @@ class PermissionSeeder extends Seeder
     {
         $permissions = [
             'Manage Jobs',
-            'Manage User',
+            'Manage Users',
             'Manage Roles',
             'Manage Permissions',
             'Manage Packages',

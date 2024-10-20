@@ -24,3 +24,8 @@ function setRoute($route)
 {
     return request()->routeIs($route) ? 'active' : '';
 }
+
+function packages()
+{
+    return ['Free 2 Months','15 Jobs Post','05 Jobs Boosters','API Integrations','Custom Interface Option','Invoice Module','Live Chat Support'];
+}
