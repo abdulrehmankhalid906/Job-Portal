@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\JobCreated;
 use App\Models\Job;
 use App\Models\City;
 use App\Models\Company;
@@ -72,6 +73,8 @@ class JobController extends Controller
         }
 
         Job::create($data);
+
+        event(new JobCreated(Auth::user()));
 
         return redirect()->back()->with('success','The job has been posted');
     }
