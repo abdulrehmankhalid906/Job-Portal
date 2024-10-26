@@ -60,7 +60,7 @@
                 </li>
             @endif
 
-            @if (auth()->user()->hasRole('Super Admin') || auth()->user()->hasRole('Company'))
+            @if (auth()->user()->hasRole('Company'))
                 <li class="sidebar-header">
                     Company Modules
                 </li>
