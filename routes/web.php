@@ -20,6 +20,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\Combine\CityController;
 use App\Http\Controllers\Combine\CountryController;
 use App\Http\Controllers\Combine\CategoryController;
+use App\Http\Controllers\Playground;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,8 @@ Route::middleware(['auth','verified'])->group(function () {
     //Stripe
     Route::post('/session',[StripeController::class,'session'])->name('session');
     Route::get('/success',[StripeController::class,'success'])->name('success');
+
+    Route::get('/playground',[PlayGround::class,'index'])->name('play.index');
 
     Route::resources([
         'users' => UserController::class,

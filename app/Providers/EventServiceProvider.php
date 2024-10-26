@@ -22,12 +22,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        WelcomeEvent::class => [
-            WelcomeMessage::class,
-        ],
-        JobCreated::class => [
-            JobCreationConfirmation::class,
-        ],
+        // WelcomeEvent::class => [
+        //     WelcomeMessage::class,
+        // ],
+        // JobCreated::class => [
+        //     JobCreationConfirmation::class,
+        // ],
     ];
 
     /**
