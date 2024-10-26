@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\User;
 use App\Notifications\WeeklyMail;
 use Illuminate\Console\Command;
+use Illuminate\Console\View\Components\Info;
 
 class UpdateJobStatus extends Command
 {
@@ -13,25 +14,30 @@ class UpdateJobStatus extends Command
      *
      * @var string
      */
-    protected $signature = 'app:update-job-status';
+    protected $signature = 'send:email-to-users';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Sending the mail to all users';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
+        \Log::info("Cron is started!");
+
+        \Log::info("Loop is started!");
         $users = User::all();
 
         foreach($users as $user)
         {
             $user->notify(new WeeklyMail());
         }
+
+        \Log::info("Loop is ended!");
     }
 }
