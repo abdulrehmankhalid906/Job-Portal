@@ -23,5 +23,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/cities', [ApiController::class,'fetchCc'])->name('cityData');
 // Route::get('/retrive-users/{id?}',[TestApiController::class,'RetriveUserDate']);
-Route::get('/retrive-users',[TestApiController::class,'RetriveUserDate']);
-

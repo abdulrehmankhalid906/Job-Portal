@@ -8,24 +8,29 @@
 				<div class="px-4 d-none d-md-block">
 					<div class="d-flex align-items-center">
 						<div class="flex-grow-1">
-							<input type="text" class="form-control my-3" placeholder="Search...">
+							<p class="my-3">Select User</p>
+							{{-- <input type="text" class="form-control my-3" placeholder="Search..." autocomplete="off"> --}}
 						</div>
 					</div>
 				</div>
 
-				<a href="#" class="list-group-item list-group-item-action border-0">
-					<div class="badge bg-success float-end">5</div>
-					<div class="d-flex align-items-start">
-						<img src="{{ asset('admin/assets/img/avatars/avatar-3.jpg') }}" class="rounded-circle me-1" alt="Vanessa Tucker" width="40" height="40">
-						<div class="flex-grow-1 ms-3">
-							Vanessa Tucker
-							<div class="small"><span class="fas fa-circle chat-online"></span> Online</div>
+				@foreach ($chats as $chat)
+					<a href="javascript::void(0);" id="{{ $chat->id }}" class="list-group-item list-group-item-action border-0">
+						<div class="badge bg-success float-end">5</div>
+						<div class="d-flex align-items-start">
+							<img src="{{ asset('admin/assets/img/avatars/avatar-3.jpg') }}" class="rounded-circle me-1" alt="Vanessa Tucker" width="40" height="40">
+							<div class="flex-grow-1 ms-3">
+								{{ $chat->name }}
+								<div class="small"><span class="fas fa-circle chat-online"></span>Typing... {{ $chat->id }}</div>
+							</div>
 						</div>
-					</div>
-				</a>
+					</a>
+				@endforeach
 				<hr class="d-block d-lg-none mt-1 mb-0" />
 			</div>
-			<div class="col-12 col-lg-7 col-xl-9">
+			
+
+			<div class="col-12 col-lg-7 col-xl-9" id="chat_layout">
 				<div class="py-2 px-4 border-bottom d-none d-lg-block">
 					<div class="d-flex align-items-center py-1">
 						<div class="position-relative">
@@ -40,10 +45,8 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="position-relative">
 					<div class="chat-messages p-4">
-
 						<div class="chat-message-right pb-4">
 							<div>
 								<img src="{{ asset('admin/assets/img/avatars/avatar-3.jpg') }}" class="rounded-circle me-1" alt="Chris Wood" width="40" height="40">
@@ -67,16 +70,93 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="flex-grow-0 py-3 px-4 border-top">
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Type your message">
-						<button class="btn btn-primary">Send</button>
-					</div>
+					<form action="{{ route('send.message') }}" method="POST" autocomplete="off">
+						@csrf
+						<input type="text" name="sent_to" value="1">
+						<div class="input-group">
+							<input type="text" class="form-control" name="message" placeholder="Type your message">
+							<button class="btn btn-primary">Send</button>
+						</div>
+					</form>
 				</div>
-
 			</div>
 		</div>
 	</div>
 </main>
 @endsection
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('.list-group-item').on('click', function(event){
+            event.preventDefault();
+            var conversation_id = $(this).attr('id');
+
+			$.ajax({
+				url: "{{ route('get.messages') }}",
+				type: "GET",
+				dataType: 'JSON',
+				data:
+				{
+					conversation_id : conversation_id
+				},
+				cache: false,
+				beforeSend: function()
+				{
+					// $('#chat_layout').html("");
+				},
+				success: function(response)
+				{
+					if(response.status = true)
+					{
+						
+							var html = `<div class="py-2 px-4 border-bottom d-none d-lg-block">
+							<div class="d-flex align-items-center py-1">
+								<div class="position-relative">
+									<img src="{{ asset('admin/assets/img/avatars/avatar-3.jpg') }}" class="rounded-circle me-1" alt="Sharon Lessman" width="40" height="40">
+								</div>
+								<div class="flex-grow-1 ps-3">
+									<strong>Sharon Lessman</strong>
+									<div class="text-muted small"><em>Typing...</em></div>
+								</div>
+								<div>
+									<button class="btn btn-light border btn-lg px-3"><i class="feather-lg" data-feather="more-horizontal"></i></button>
+								</div>
+							</div>
+						</div>
+						<div class="position-relative">
+							<div class="chat-messages p-4">
+								<div class="chat-message-right pb-4">
+									<div>
+										<img src="{{ asset('admin/assets/img/avatars/avatar-3.jpg') }}" class="rounded-circle me-1" alt="Chris Wood" width="40" height="40">
+										<div class="text-muted small text-nowrap mt-2">2:33 am</div>
+									</div>
+									<div class="flex-shrink-1 bg-light rounded py-2 px-3 me-3">
+										<div class="font-weight-bold mb-1">You</div>
+										Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
+									</div>
+								</div>
+		
+								<div class="chat-message-left pb-4">
+									<div>
+										<img src="{{ asset('admin/assets/img/avatars/avatar-3.jpg') }}" class="rounded-circle me-1" alt="Sharon Lessman" width="40" height="40">
+										<div class="text-muted small text-nowrap mt-2">2:34 am</div>
+									</div>
+									<div class="flex-shrink-1 bg-light rounded py-2 px-3 ms-3">
+										<div class="font-weight-bold mb-1">Sharon Lessman</div>
+										Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
+									</div>
+								</div>
+							</div>
+						</div>`;
+						$('')
+					}
+				},
+				error: function()
+				{
+					
+				},
+			});
+        });
+	});
+</script>

@@ -51,6 +51,9 @@ Route::middleware(['auth','verified'])->group(function () {
     //Dashboard
     Route::get('/home', [AdminController::class, 'index'])->name('home');
     Route::get('/chats',[AdminController::class,'chatSupport'])->name('chat.support');
+    Route::get('/get-messages',[AdminController::class,'getMessages'])->name('get.messages');
+    Route::post('/send-message',[AdminController::class,'sendMessage'])->name('send.message');
+
     //Profile
     Route::get('/profile', [DashboardController::class, 'companyProfile'])->name('companyProfile');
     Route::post('/profile', [DashboardController::class, 'updateCompany'])->name('updateCompany');
