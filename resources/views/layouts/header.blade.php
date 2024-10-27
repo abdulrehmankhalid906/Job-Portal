@@ -100,8 +100,8 @@
 
                     <div class="dropdown-divider"></div>
 
-                    <a class="dropdown-item" href="index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-                    <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i>Chat Support</a>
+                    {{-- <a class="dropdown-item" href="index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a> --}}
+                    <a class="dropdown-item" href="{{ route('chat.support') }}"><i class="align-middle me-1" data-feather="help-circle"></i>Chat Support</a>
 
                     <div class="dropdown-divider"></div>
 

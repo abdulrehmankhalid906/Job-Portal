@@ -20,4 +20,9 @@ class AdminController extends Controller
             'users' => User::count()
         ]);
     }
+
+    public function chatSupport()
+    {
+        return view('chat.index');
+    }
 }
