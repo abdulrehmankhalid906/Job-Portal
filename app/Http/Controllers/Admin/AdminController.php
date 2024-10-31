@@ -25,15 +25,27 @@ class AdminController extends Controller
 
     public function chatSupport()
     {
-        $chats = User::where('id', 1)->get();
+        $users = User::where('id', '!=', Auth::user()->id)->get();
         return view('chat.index',[
-            'chats' => $chats
+            'users' => $users
         ]);
     }
 
     public function getMessages(Request $request)
     {
-        $messages = Message::with('user')->where('conversation_id', $request->conversation_id)->get();
+        $userId = $request->user_id; 
+        $loggedInUserId = auth()->id();
+
+        $messages = Message::where(function ($query) use ($userId, $loggedInUserId) {
+                $query->where('sender_id', $loggedInUserId)->where('receiver_id', $userId);
+            })
+            ->orWhere(function ($query) use ($userId, $loggedInUserId)
+            {
+                $query->where('sender_id', $userId)->where('receiver_id', $loggedInUserId);
+            })
+            ->with(['receiver', 'sender'])
+            ->orderBy('created_at', 'asc')
+            ->get();
 
         return response()->json([
             'status' => true,
@@ -44,8 +56,8 @@ class AdminController extends Controller
     public function sendMessage(Request $request)
     {
         Message::create([
-            'user_id' => Auth::user()->id,
-            'conversation_id' => $request->sent_to,
+            'sender_id' => Auth::user()->id,
+            'receiver_id' => $request->receiver_id,
             'message' => $request->message,
             'read' => false
         ]);
