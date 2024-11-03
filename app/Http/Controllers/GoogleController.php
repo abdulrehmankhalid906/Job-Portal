@@ -28,7 +28,7 @@ class GoogleController extends Controller
                     'name' => $googleUser->name,
                     'email' => $googleUser->email,
                     'google_id' => $googleUser->id,
-                    'password' => Hash::make('12345678')
+                    'password' => bcrypt('12345678')
                 ]);
             }
 
