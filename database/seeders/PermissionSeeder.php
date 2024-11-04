@@ -22,7 +22,8 @@ class PermissionSeeder extends Seeder
             'Manage Feedback',
             'Manage Countries',
             'Manage Cities',
-            'Manage Site'
+            'Manage Site',
+            'Manage Companies'
         ];
 
         foreach ($permissions as $permission) {

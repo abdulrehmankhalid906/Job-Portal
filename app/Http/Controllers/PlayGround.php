@@ -11,6 +11,10 @@ class PlayGround extends Controller
     public function index()
     {
         //
-        $session = session();
+        // $session = session();
+        $a = EncryptId(1200);
+        $b = DecryptId('X6UT0MMM1PWSW7T2423');
+
+        dd($a,$b);
     }
 }
