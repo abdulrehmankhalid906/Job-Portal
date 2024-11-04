@@ -1,11 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card-header align-items-center d-flex">
-            <h4 class="card-title mb-0 flex-grow-1">Cities</h4>
-            <div class="flex-shrink-0">
+<main class="content">
+    <div class="container-fluid p-0">
+        <div class="row mb-xl-0">
+            <div class="col-auto d-none d-sm-block">
+                <h3><strong>All</strong> Cities</h3>
+            </div>
+
+            <div class="col-auto ms-auto text-end mt-n1">
                 <a href="{{ route('cities.create') }}" class="btn btn-success btn-label btn-sm">
                     <i class="ri-add-fill label-icon align-middle fs-16 me-2"></i> Add New
                 </a>
@@ -59,9 +62,6 @@
             </div>
         </div>
     </div>
-</div>
+</main>
 <input id="ajaxRoute" value="{{ route('cities.index') }}" hidden/>
 @endsection
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="{{ asset('modules/cities.js') }}"></script>

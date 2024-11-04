@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Playground;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Redirect;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\GoogleController;
@@ -20,7 +22,6 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\Combine\CityController;
 use App\Http\Controllers\Combine\CountryController;
 use App\Http\Controllers\Combine\CategoryController;
-use App\Http\Controllers\Playground;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,3 +84,7 @@ Route::middleware(['auth','verified'])->group(function () {
         'site' => SiteController::class,
     ]);
 });
+
+Route::fallback(function(){
+    return Redirect::to('/');  //incase we don't have targeted url
+}); 
