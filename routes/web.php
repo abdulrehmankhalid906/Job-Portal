@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Playground;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
@@ -8,7 +7,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Redirect;
-use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\StripeController;
@@ -67,8 +65,6 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('/session',[StripeController::class,'session'])->name('session');
     Route::get('/success',[StripeController::class,'success'])->name('success');
 
-    Route::get('/playground',[PlayGround::class,'index'])->name('play.index');
-
     Route::resources([
         'users' => UserController::class,
         'roles' => RoleController::class,
@@ -87,4 +83,4 @@ Route::middleware(['auth','verified'])->group(function () {
 
 Route::fallback(function(){
     return Redirect::to('/');  //incase we don't have targeted url
-}); 
+});

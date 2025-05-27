@@ -22,7 +22,7 @@ class FrontController extends Controller
     {
         $this->CommonRepository = $CommonRepository;
     }
-    
+
     public function frontHome()
     {
         $categories = Category::withCount('jobs')->get();
@@ -72,17 +72,13 @@ class FrontController extends Controller
             'email' => $request->email,
             'portweb' => $request->portweb,
             'coverletter' => $request->coverletter,
-            // 'status' => 0
         ]);
 
         if($request->hasfile('upload_cv'))
         {
             $file = $request->file('upload_cv');
-
             $fileName = time(). '-' .$file->getClientOriginalName();
-
             $file->storeAs('public/cv/', $fileName);
-
             $apply['upload_cv'] = $fileName;
         }
 

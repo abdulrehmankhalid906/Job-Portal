@@ -144,16 +144,6 @@
                         </div>
 
                         <div class="col-lg-6 col-sm-6">
-                            <label for="">Extra Documents</label>
-                            <input type="file" class="form-control bg-white @error('extra_document') is-invalid @enderror" name="extra_document" id="extra_document">
-                            @error('extra_document')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="col-lg-6 col-sm-6">
                             <label for="">Boost Post</label>
                             <div>
                                 <label class="form-check form-check-inline">

@@ -33,7 +33,7 @@
         @include('frontend.header')
 
         <!-- Job Detail Start -->
-        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container-xxl py-5">
             <div class="container">
                 <div class="row gy-5 gx-4">
                     <div class="col-lg-8">
@@ -60,19 +60,44 @@
                                 <input type="hidden" value="{{ $job->companies->id }}" name="company_id" readonly>
                                 <div class="row g-3">
                                     <div class="col-12 col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Your Name" id="name" name="name" value="{{ old('name') }}">
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Your Name" id="name" name="name" value="{{ old('name') }}">
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        <input type="email" class="form-control" placeholder="Your Email" id="email" name="email" value="{{ old('email') }}">
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Your Email" id="email" name="email" value="{{ old('email') }}">
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Portfolio Website" id="portweb" name="portweb" value="{{ old('portweb') }}">
+                                        <input type="text" class="form-control @error('portweb') is-invalid @enderror" placeholder="Portfolio Website" id="portweb" name="portweb" value="{{ old('portweb') }}">
+                                        @error('portweb')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        <input type="file" class="form-control bg-white" id="upload_cv" name="upload_cv">
+                                        <input type="file" class="form-control bg-white @error('upload_cv') is-invalid @enderror" id="upload_cv" name="upload_cv">
+                                        @error('upload_cv')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
-                                        <textarea class="form-control" rows="5" placeholder="Coverletter" id="coverletter" name="coverletter"></textarea>
+                                        <textarea class="form-control @error('coverletter') is-invalid @enderror" rows="5" placeholder="Coverletter" id="coverletter" name="coverletter"></textarea>
+                                        @error('coverletter')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
                                         <input type="submit" class="btn btn-primary w-100" value="Apply Now">

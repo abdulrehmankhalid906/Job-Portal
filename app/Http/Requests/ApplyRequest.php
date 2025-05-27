@@ -25,7 +25,7 @@ class ApplyRequest extends FormRequest
             'name' => 'required|string|max:35',
             'email' => 'required|email',
             'coverletter' => 'required|string|max:255',
-            'portweb' => 'required|url'
+            'portweb' => 'nullable'
         ];
     }
 }
