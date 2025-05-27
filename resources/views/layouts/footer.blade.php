@@ -8,7 +8,7 @@
         <div class="row text-muted">
             <div class="col-6 text-start">
                 <p class="mb-0">
-                    <a class="text-muted" href="{{ $site && $site->base_url ? $site->base_url .'/home' : '#' }}"><strong>{{ $site && $site->title ? $site->title : 'TLinker' }} </strong></a> &copy;
+                    <a class="text-muted" href="{{ $site && $site->base_url ? $site->base_url .'home' : '#' }}"><strong>{{ $site && $site->title ? $site->title : 'TLinker' }} </strong></a> &copy;
                 </p>
             </div>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\JobCreated;
+use App\Helpers\InitS;
 use App\Models\Job;
 use App\Models\City;
 use App\Models\Company;
@@ -12,18 +13,23 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\JobRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Repositories\CommonRepository;
 
 class JobController extends Controller
 {
-    protected $CommonRepository;
-    public function __construct(CommonRepository $CommonRepository)
-    {
-        $this->CommonRepository = $CommonRepository;
-    }
     /**
      * Display a listing of the resource.
      */
+    public $positions;
+    public $types;
+    public $ranges;
+
+    public function __construct()
+    {
+        $this->positions = InitS::positions();
+        $this->types = InitS::types();
+        $this->ranges = InitS::range();
+
+    }
     public function index()
     {
         validate_user_permission('Manage Jobs');
@@ -45,9 +51,9 @@ class JobController extends Controller
             'categories' => Category::get(),
             'countries' => Country::get(),
             'cities' => City::get(),
-            'positions' => $this->CommonRepository->positions(),
-            'types' => $this->CommonRepository->types(),
-            'ranges' => $this->CommonRepository->range()
+            'positions' => $this->positions,
+            'types' => $this->types,
+            'ranges' => $this->ranges
         ]);
     }
 
@@ -64,17 +70,7 @@ class JobController extends Controller
             'slug' => Str::slug($request->title, '-')
         ];
 
-        if($request->hasFile('extra_document'))
-        {
-            $file = $request->file('extra_document');
-            $fileName = time() . '-' . $file->getClientOriginalName();
-            $file->storeAs('public/images/', $fileName);
-            $data['extra_document'] = $fileName;
-        }
-
         Job::create($data);
-
-        event(new JobCreated(Auth::user()));
 
         return redirect()->back()->with('success','The job has been posted');
     }
@@ -100,9 +96,9 @@ class JobController extends Controller
             'countries' => Country::get(),
             'cities' => City::where('country_id', $job->country_id)->get(),
             'job' => $job,
-            'positions' => $this->CommonRepository->positions(),
-            'types' => $this->CommonRepository->types(),
-            'ranges' => $this->CommonRepository->range()
+            'positions' => $this->positions,
+            'types' => $this->types,
+            'ranges' => $this->ranges
         ]);
 
     }
@@ -112,27 +108,23 @@ class JobController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $company = Job::where('id', $id)->first();
+        $job = Job::where('id', $id)->first();
 
         $data = $request->all();
-        $data['highlight_post'] = $request->boost_post == 'Yes' ? 1 : 0;  
+        $data['highlight_post'] = $request->boost_post == 'Yes' ? 1 : 0;
 
-        if ($request->hasFile('extra_document')) {
-            $co_img = $request->file('extra_document');
-            $fileName = time() . '-' . $co_img->getClientOriginalName();
-            $co_img->storeAs('public/images/', $fileName);
-            $data['extra_document'] = $fileName;
-        }
-
-        $company->update($data);
-        return redirect()->back()->with('success', 'Job updated successfully');
-    } 
+        $job->update($data);
+        return redirect()->back()->with('success', 'Job has been updated successfully');
+    }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $job = Job::findOrFail($id);
+        $job->delete();
+
+        return redirect()->back()->with('success', 'Job has been deleted successfully');
     }
 }

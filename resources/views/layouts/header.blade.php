@@ -90,8 +90,10 @@
                     <a class="dropdown-item" href="{{ route('companyProfile') }}"><i class="align-middle me-1" data-feather="pie-chart"></i> Profile </a>
 
                     <div class="dropdown-divider"></div>
-
                     <a class="dropdown-item" href="{{ route('chat.support') }}"><i class="align-middle me-1" data-feather="help-circle"></i>Chat Support</a>
+
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('frontHome') }}"><i class="align-middle me-1" data-feather="help-circle"></i>Frontend</a>
 
                     <div class="dropdown-divider"></div>
 

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return view('dashboard.index',[
             'companies' => Company::count(),
@@ -33,7 +33,7 @@ class AdminController extends Controller
 
     public function getMessages(Request $request)
     {
-        $userId = $request->user_id; 
+        $userId = $request->user_id;
         $loggedInUserId = auth()->id();
 
         $messages = Message::where(function ($query) use ($userId, $loggedInUserId) {
