@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('portweb');
             $table->longText('coverletter');
-            $table->string('upload_cv')->nullable();
+            $table->string('upload_cv');
             $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending');
             $table->softDeletes();
             $table->timestamps();

@@ -11,16 +11,7 @@ class Apply extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = [
-        'job_id',
-        'company_id',
-        'name',
-        'email',
-        'coverletter',
-        'portweb',
-        'status',
-        'upload_cv'
-    ];
+    protected $fillable = ['job_id','company_id','name','email','coverletter','portweb','status','upload_cv'];
 
     public function jobs()
     {

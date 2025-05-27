@@ -16,11 +16,9 @@ class UserController extends Controller
     public function index()
     {
         validate_user_permission('Manage Users');
-        $users = User::with('roles')->get();
 
-        // dd($users);
         return view('users.user',[
-            'users' => $users
+            'users' => User::with('roles')->get()
         ]);
     }
 
@@ -31,9 +29,8 @@ class UserController extends Controller
     {
         validate_user_permission('Manage Users');
 
-        $roles = Role::get();
         return view('users.add_user',[
-            'roles' => $roles
+            'roles' => Role::get()
         ]);
     }
 
@@ -42,6 +39,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        validate_user_permission('Manage Users');
+
         $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users,email',
@@ -53,7 +52,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);  //to assign role to user
+        ]);
 
         $user->syncRoles($request->role);
 
@@ -90,6 +89,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        validate_user_permission('Manage Users');
+
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -105,6 +106,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        validate_user_permission('Manage Users');
+
         $user->delete();
         return redirect('/users')->with('success', 'User Deleted Successfully!');
     }

@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('job_type')->nullable();
             $table->string('salary_range')->nullable();
             $table->string('valid_till')->nullable();
-            $table->string('extra_document')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

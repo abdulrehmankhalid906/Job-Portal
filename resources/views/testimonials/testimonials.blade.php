@@ -29,7 +29,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($testimonial as $testimonial)
+                        @foreach ($testimonials as $testimonial)
                             <tr>
                                 <td>{{ $testimonial->id }}</td>
                                 <td>{{ $testimonial->company->company_name }}</td>

@@ -14,16 +14,9 @@ class RoleController extends Controller
     public function index()
     {
         validate_user_permission('Manage Roles');
-        $roles = Role::with('permissions')->get();
 
-        
-        // foreach ($roles as $role) {
-        //     foreach ($role->permissions as $permission) {
-        //         dd($permission->name);  // Will dump the name of the first permission
-        //     }
-        // }
         return view('roles.roles',[
-            'roles' => $roles
+            'roles' => Role::with('permissions')->get()
         ]);
     }
 
@@ -42,10 +35,10 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        validate_user_permission('Manage Roles');
+
         $request->validate([
-            [
-                'name' => 'required,unique:roles,name'
-            ]
+            'name' => 'required,unique:roles,name',
         ]);
 
         Role::create([
@@ -70,9 +63,8 @@ class RoleController extends Controller
     {
         validate_user_permission('Manage Roles');
 
-        $roles = Role::find($id);
         return view('roles.edit_roles', [
-            'roles' => $roles
+            'roles' => Role::find($id)
         ]);
     }
 
@@ -81,10 +73,10 @@ class RoleController extends Controller
      */
     public function update(Role $role, Request $request)
     {
+        validate_user_permission('Manage Roles');
+
         $request->validate([
-            [
-                'name' => 'required,unique:roles,name' .$role->id
-            ]
+            'name' => 'required,unique:roles,name' .$role->id
         ]);
 
         $role->update([
@@ -99,6 +91,8 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
+        validate_user_permission('Manage Roles');
+
         $roles = Role::findorFail($id);
         $roles->delete();
 
@@ -107,6 +101,8 @@ class RoleController extends Controller
 
     public function assignRolePermissions(Request $request, string $id)
     {
+        validate_user_permission('Manage Roles');
+
         $role = Role::findOrFail($id);
         return view('roles.assign_permissions', [
             'role' => $role,
@@ -116,7 +112,9 @@ class RoleController extends Controller
     }
 
     public function updateRolePermissions(Request $request, string $id)
-    {    
+    {
+        validate_user_permission('Manage Roles');
+
         $role = Role::find($id);
         $role->syncPermissions($request->permissions);
 

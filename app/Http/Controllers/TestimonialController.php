@@ -16,10 +16,9 @@ class TestimonialController extends Controller
     {
         validate_user_permission('Manage Feedback');
 
-        $testimonial = Testimonial::with('company')->get();
-
-
-        return view('testimonials.testimonials',compact('testimonial'));
+        return view('testimonials.testimonials',[
+            'testimonials' => Testimonial::with('company')->get()
+        ]);
     }
 
     /**
@@ -29,10 +28,8 @@ class TestimonialController extends Controller
     {
         validate_user_permission('Manage Feedback');
 
-        $user = User::where('id', Auth::user()->id)->with(['company','testimonials'])->first();
-
         return view('testimonials.add_testomonials',[
-            'user' => $user
+            'user' => User::where('id', Auth::user()->id)->with(['company','testimonials'])->first()
         ]);
     }
 
@@ -41,6 +38,8 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
+        validate_user_permission('Manage Feedback');
+
         Testimonial::create([
             'user_id' => auth()->id(),
             'company_id' => $request->company_id,

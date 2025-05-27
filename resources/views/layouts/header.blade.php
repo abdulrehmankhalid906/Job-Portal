@@ -3,19 +3,11 @@
         <i class="hamburger align-self-center"></i>
     </a>
 
-    <form class="d-none d-sm-inline-block">
-        <div class="input-group input-group-navbar">
-            <input type="text" class="form-control" placeholder="Search…" aria-label="Search">
-            <button class="btn" type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search align-middle"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            </button>
-        </div>
-    </form>
 
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
 
-            <li class="nav-item dropdown">
+            {{-- <li class="nav-item dropdown">
                 <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="position-relative">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell align-middle"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
@@ -79,7 +71,7 @@
                         <a href="#" class="text-muted">Show all notifications</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
             <li class="nav-item dropdown">
                 <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
@@ -95,12 +87,10 @@
                     <span class="text-dark">{{ Auth::user()->name }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    {{-- <a class="dropdown-item" href="{{ route('user-profile') }}"><i class="align-middle me-1" data-feather="user"></i> Profile</a> --}}
                     <a class="dropdown-item" href="{{ route('companyProfile') }}"><i class="align-middle me-1" data-feather="pie-chart"></i> Profile </a>
 
                     <div class="dropdown-divider"></div>
 
-                    {{-- <a class="dropdown-item" href="index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a> --}}
                     <a class="dropdown-item" href="{{ route('chat.support') }}"><i class="align-middle me-1" data-feather="help-circle"></i>Chat Support</a>
 
                     <div class="dropdown-divider"></div>

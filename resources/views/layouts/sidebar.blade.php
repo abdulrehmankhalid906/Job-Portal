@@ -20,12 +20,6 @@
                         class="align-middle">Dashboard</span>
                 </a>
             </li>
-            {{-- <li class="sidebar-item {{ setRoute('play.index') }}">
-                <a class="sidebar-link" href="{{ route('play.index') }}">
-                    <i class="align-middle" data-feather="monitor"></i> <span
-                        class="align-middle">Playground</span>
-                </a>
-            </li> --}}
 
             @if (auth()->user()->hasRole('Super Admin'))
                 <li class="sidebar-item {{ setRoute('site.create') }}">

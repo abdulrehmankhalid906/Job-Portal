@@ -15,11 +15,8 @@ class PackageController extends Controller
     public function index()
     {
         validate_user_permission('Manage Packages');
-
-        $packages = Package::all();
-
         return view('package.packages',[
-            'packages' => $packages,
+            'packages' => Package::all(),
         ]);
     }
 
@@ -29,10 +26,7 @@ class PackageController extends Controller
     public function create()
     {
         validate_user_permission('Manage Packages');
-
-        return view('package.create_package',[
-            'packages' => packages()
-        ]);
+        return view('package.create_package');
     }
 
     /**
@@ -40,12 +34,10 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
+        validate_user_permission('Manage Packages');
         $data = $request->all();
         $data['features'] = json_encode($request->features);
-        $package = Package::create($data);
-
-        //dd($package);
-
+        Package::create($data);
         return redirect('packages')->with('success','The package has been created');
     }
 
@@ -63,10 +55,7 @@ class PackageController extends Controller
     public function edit(String $id)
     {
         validate_user_permission('Manage Packages');
-
         $package = Package::findorFail($id);
-
-        // dd($package);
         return view('package.update_package',[
             'package' => $package
         ]);
@@ -77,13 +66,14 @@ class PackageController extends Controller
      */
     public function update(Request $request, $id)
     {
+        validate_user_permission('Manage Packages');
         $package = Package::findOrFail($id);
 
         $data = $request->all();
         $data['features'] = json_encode($request->features);
         $package->update($data);
 
-        return redirect('packages')->with('success','Package updated successfully.');        
+        return redirect('packages')->with('success','Package updated successfully.');
     }
 
     /**
@@ -91,6 +81,7 @@ class PackageController extends Controller
      */
     public function destroy(Package $package, $id)
     {
+        validate_user_permission('Manage Packages');
         $package = Package::findorFail($id);
         $package->delete();
 

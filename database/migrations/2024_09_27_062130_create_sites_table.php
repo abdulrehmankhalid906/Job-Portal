@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('newsletter_text');
             $table->json('contacts');
             $table->json('socials_links');
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }

@@ -9,10 +9,6 @@ class Package extends Model
 {
     use HasFactory;
 
-    // protected $casts = [
-    //     'features' => 'array',
-    // ];
-
     protected $fillable = ['name','features','price','duration'];
 
     public function user()

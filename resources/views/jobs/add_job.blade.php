@@ -28,101 +28,81 @@
                             <label for="">Job Category</label>
                             <select class="form-select form-select-md @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
                                 <option value="">Select One</option>
-                                @if(count($categories) > 0)
-                                    @foreach ($categories as $category)
-                                        <option value={{ $category->id }}>{{ $category->name }}</option>
-                                    @endforeach
-                                @endif
-
-                                @error('category_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                @foreach ($categories as $category)
+                                    <option value={{ $category->id }}>{{ $category->name }}</option>
+                                @endforeach
                             </select>
+                            @error('category_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="col-6 col-sm-6">
                             <label for="">Select Country</label>
                             <select class="form-select form-select-md @error('country_id') is-invalid @enderror" name="country_id" id="country_id">
                                 <option value="">Select One</option>
-                                @if(count($countries) > 0)
-                                    @foreach ($countries as $country)
-                                        <option value={{ $country->id }}>{{ $country->name }}</option>
-                                    @endforeach
-                                @endif
-
-                                @error('country_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                @foreach ($countries as $country)
+                                    <option value={{ $country->id }}>{{ $country->name }}</option>
+                                @endforeach
                             </select>
+                            @error('country_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="col-6 col-sm-6">
                             <label for="">Select City</label>
                             <select class="form-select form-select-md @error('city_id') is-invalid @enderror" name="city_id" id="city_id">
                                 <option value="">Select One</option>
-                                {{-- @if(count($cities) > 0)
-                                    @foreach ($cities as $city)
-                                        <option value={{ $city->id }}>{{ $city->name }}</option>
-                                    @endforeach
-                                @endif --}}
-
-                                @error('city_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </select>
+                            @error('city_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="col-6 col-sm-6">
                             <label for="">Position Level</label>
                             <select class="form-select form-select-md @error('position_level') is-invalid @enderror" name="position_level" id="position_level">
                                 <option value="">Select One</option>
-                                @if(count($positions) > 0)
-                                    @foreach ($positions as $position)
-                                        <option value="{{ $position }}">{{ $position }}</option>
-                                    @endforeach
-                                @endif
-                               
-                                @error('position_level')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                @foreach ($positions as $position)
+                                    <option value="{{ $position }}">{{ $position }}</option>
+                                @endforeach
                             </select>
+                            @error('position_level')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="col-12 col-sm-6">
                             <label for="">Job Type</label>
                             <select class="form-select form-select-md @error('job_type') is-invalid @enderror" name="job_type" id="job_type">
                                 <option value="">Select One</option>
-                                @if(count($types) > 0)
-                                    @foreach ($types as $type)
-                                        <option value="{{ $type }}">{{ $type }}</option>
-                                    @endforeach
-                                @endif
-
-                                @error('job_type')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                @foreach ($types as $type)
+                                    <option value="{{ $type }}">{{ $type }}</option>
+                                @endforeach
                             </select>
+                            @error('job_type')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="col-12 col-sm-6">
                             <label for="">Salary Range</label>
                             <select class="form-select form-select-md @error('salary_range') is-invalid @enderror" name="salary_range" id="salary_range">
                                 <option value="">Select One</option>
-                                @if(count($ranges) > 0)
-                                    @foreach ($ranges as $range)
-                                        <option value="{{ $range }}">{{ $range }}</option>
-                                    @endforeach
-                                @endif
+                                @foreach ($ranges as $range)
+                                    <option value="{{ $range }}">{{ $range }}</option>
+                                @endforeach
                             </select>
                             @error('salary_range')
                                 <span class="invalid-feedback" role="alert">
@@ -135,16 +115,6 @@
                             <label for="">Valid Till</label>
                             <input type="date" class="form-control @error('valid_till') is-invalid @enderror" placeholder="Valid Till" name="valid_till" id="valid_till">
                             @error('valid_till')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="col-lg-12 col-sm-6">
-                            <label for="">Extra Documents</label>
-                            <input type="file" class="form-control bg-white @error('extra_document') is-invalid @enderror" name="extra_document" id="extra_document">
-                            @error('extra_document')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

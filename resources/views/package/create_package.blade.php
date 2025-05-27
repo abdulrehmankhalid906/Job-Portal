@@ -32,7 +32,7 @@
 
                         <div class="col-6 col-sm-4">
                             <label for="">Price</label>
-                            <input type="number" min="1" step="0.01" class="form-control @error('price') is-invalid @enderror" name="price" id="price">
+                            <input type="number" min="0" step="0.01" class="form-control @error('price') is-invalid @enderror" name="price" id="price">
                             @error('price')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -57,10 +57,10 @@
                             <label for="">Description</label>
                             <select class="form-select" multiple aria-label="multiple select example"  name="features[]" id="features">
                                 <option value="">Open this select menu</option>
-                                @foreach ($packages as $package)
+                                @foreach (InitS::packages() as $package)
                                     <option value="{{ $package }}">{{ $package }}</option>
                                 @endforeach
-                            </select>                            
+                            </select>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="col-12 mb-4">
-                            <button class="btn btn-primary w-100" type="submit">Post Job</button>
+                            <button class="btn btn-primary w-100" type="submit">Submit</button>
                         </div>
                     </div>
                 </form>

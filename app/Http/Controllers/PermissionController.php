@@ -13,9 +13,9 @@ class PermissionController extends Controller
     public function index()
     {
         validate_user_permission('Manage Permissions');
-        $permissions = Permission::all();
+
         return view('permissions.permissions',[
-            'permissions' => $permissions
+            'permissions' => Permission::all()
         ]);
     }
 
@@ -34,9 +34,7 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            [
-                'name' => 'required,unique:permissions,name'
-            ]
+            'name' => 'required,unique:permissions,name'
         ]);
 
         Permission::create([
@@ -61,9 +59,8 @@ class PermissionController extends Controller
     {
         validate_user_permission('Manage Permissions');
 
-        $permissions = Permission::find($id);
         return view('permissions.edit_permissions', [
-            'permissions' => $permissions
+            'permissions' => Permission::find($id)
         ]);
     }
 
@@ -73,9 +70,7 @@ class PermissionController extends Controller
     public function update(Permission $permission, Request $request)
     {
         $request->validate([
-            [
-                'name' => 'required,unique:permissions,name' .$permission->id
-            ]
+            'name' => 'required,unique:permissions,name' .$permission->id
         ]);
 
         $permission->update([
@@ -95,10 +90,5 @@ class PermissionController extends Controller
         $permission->delete();
 
         return redirect('permissions')->with('success','Permission Deleted Successfully!');
-    }
-
-    public function addbulkPermissions(Request $request)
-    {
-        dd($request->all());
     }
 }

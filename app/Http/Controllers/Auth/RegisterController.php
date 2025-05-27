@@ -54,6 +54,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:3', 'confirmed'],
+            'company_name' => ['required', 'string'],
+            'founded_date' => ['required', 'date'],
         ]);
     }
 
@@ -71,15 +73,15 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
-    
+
             Company::create([
                 'user_id' => $user->id,
                 'company_name' =>  $data['company_name'],
                 'founded_date' => $data['founded_date']
             ]);
-    
+
             $user->syncRoles('Company');
-    
+
             return $user;
         });
     }
